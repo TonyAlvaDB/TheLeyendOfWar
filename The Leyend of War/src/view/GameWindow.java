@@ -30,7 +30,7 @@ public class GameWindow {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 //        gamePanel.setupGame();
-//        gamePanel.startGameThread();
+        gamePanel.startGameThread();
     }
     
 }

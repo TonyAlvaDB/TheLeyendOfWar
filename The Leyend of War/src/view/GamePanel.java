@@ -9,6 +9,7 @@ import controller.KeyHandler;
 import controller.Player;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
@@ -24,7 +25,7 @@ public class GamePanel extends JPanel implements Runnable{
     final int ORIGINAL_TILE_SIZE = 16;
     final int SCALE = 3;
     
-    final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE;
+    public final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE;
     final int MAX_SCREEN_COL = 16;
     final int MAX_SCREEN_ROW = 12;
     
@@ -34,6 +35,11 @@ public class GamePanel extends JPanel implements Runnable{
     final int FPS = 60;
     final int UPS = 200;
     
+    int playerX = 100;
+    int playerY = 100;
+    int speed = 4;
+    
+    
     KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
     Player player = new Player(this, keyH);
@@ -42,8 +48,8 @@ public class GamePanel extends JPanel implements Runnable{
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        
-        startGameThread();
+        this.addKeyListener(keyH);
+        this.setFocusable(true);
     }
 
     public void startGameThread(){
@@ -53,13 +59,20 @@ public class GamePanel extends JPanel implements Runnable{
     
     public void update(){
         player.update();
+            
     }
     
-    public void draw(Graphics2D g2){
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D)g;
+        
         player.draw(g2);
+
+        g2.dispose();
     }
 
     public void run() {
+    
         double timePerFrame = 1000000000.0 / FPS;
         double timePerUpdate = 1000000000.0 / UPS;
 
@@ -101,5 +114,4 @@ public class GamePanel extends JPanel implements Runnable{
         }
         
     }
-
 }
