@@ -5,8 +5,11 @@
 
 package view;
 
+import controller.KeyHandler;
+import controller.Player;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 /**
@@ -31,7 +34,9 @@ public class GamePanel extends JPanel implements Runnable{
     final int FPS = 60;
     final int UPS = 200;
     
+    KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
+    Player player = new Player(this, keyH);
     
     public GamePanel(){
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
@@ -46,6 +51,13 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread.start();
     }
     
+    public void update(){
+        player.update();
+    }
+    
+    public void draw(Graphics2D g2){
+        player.draw(g2);
+    }
 
     public void run() {
         double timePerFrame = 1000000000.0 / FPS;
@@ -68,7 +80,7 @@ public class GamePanel extends JPanel implements Runnable{
             previousTime = currentTime;
 
             if (deltaU >= 1) {
-                //update();
+                update();
                 updates++;
                 deltaU--;
             }
