@@ -28,14 +28,16 @@ public class TileManager {
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         tile = new Tile[100];
-        getTileImage();
+        
         mapTileNum = new int [gamePanel.MAX_SCREEN_COL][gamePanel.MAX_SCREEN_ROW];
+        getTileImage();
+        loadMap();
     }
     
     public void loadMap(){
         try {
-            
-            InputStream is = getClass().getResourceAsStream("maps/map01.txt");
+            System.out.println("starting");
+            InputStream is = getClass().getResourceAsStream("/maps/map01.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             
             int col = 0;
@@ -43,10 +45,21 @@ public class TileManager {
             
             while(col < gamePanel.MAX_SCREEN_COL && row < gamePanel.MAX_SCREEN_ROW){
                 String line = br.readLine();
+                
                 while(col < gamePanel.MAX_SCREEN_COL){
                     String numbers[] = line.split(" ");
+                    int num = Integer.parseInt(numbers[col]);
+                    mapTileNum[col][row] = num;
+                    col++;
+                    if(col == gamePanel.MAX_SCREEN_COL){
+                        col = 0;
+                        row++;
+                    }
                 }
+                System.out.println("starting");
             }
+            br.close();
+            
             
         } catch (Exception e) {
         }
@@ -94,7 +107,10 @@ public class TileManager {
         int y = 0;
         
         while(col < gamePanel.MAX_SCREEN_COL && row < gamePanel.MAX_SCREEN_ROW){
-            g2.drawImage(tile[0].image, x, y,gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
+            
+            int tileNum = mapTileNum[col][row];
+            
+            g2.drawImage(tile[tileNum].image, x, y,gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
             col++;
             x+= gamePanel.TILE_SIZE;
             if(col == gamePanel.MAX_SCREEN_COL){
