@@ -29,8 +29,8 @@ public class GameWindow {
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-        gamePanel.setupGame();
-        gamePanel.startGameThread();
+//        gamePanel.setupGame();
+//        gamePanel.startGameThread();
     }
     
 }

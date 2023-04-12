@@ -5,6 +5,7 @@
 
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 
@@ -15,7 +16,7 @@ import javax.swing.JPanel;
  * Software Engeneer Student - UIA
  *
  */
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel implements Runnable{
     
     final int ORIGINAL_TILE_SIZE = 16;
     final int SCALE = 3;
@@ -27,8 +28,66 @@ public class GamePanel extends JPanel{
     final int SCREEN_WIDTH = TILE_SIZE * MAX_SCREEN_COL;
     final int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREEN_ROW;
     
+    final int FPS = 60;
+    final int UPS = 200;
+    
+    Thread gameThread;
+    
     public GamePanel(){
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+        this.setBackground(Color.black);
+        this.setDoubleBuffered(true);
+        
+        startGameThread();
+    }
+
+    public void startGameThread(){
+        gameThread = new Thread(this);
+        gameThread.start();
+    }
+    
+
+    public void run() {
+        double timePerFrame = 1000000000.0 / FPS;
+        double timePerUpdate = 1000000000.0 / UPS;
+
+        long previousTime = System.nanoTime();
+
+        int frames = 0;
+        int updates = 0;
+        long lastCheck = System.currentTimeMillis();
+
+        double deltaU = 0;
+        double deltaF = 0;
+
+        while (true) {
+            long currentTime = System.nanoTime();
+
+            deltaU += (currentTime - previousTime) / timePerUpdate;
+            deltaF += (currentTime - previousTime) / timePerFrame;
+            previousTime = currentTime;
+
+            if (deltaU >= 1) {
+                //update();
+                updates++;
+                deltaU--;
+            }
+
+            if (deltaF >= 1) {
+                repaint();
+                frames++;
+                deltaF--;
+            }
+
+            if (System.currentTimeMillis() - lastCheck >= 1000) {
+                lastCheck = System.currentTimeMillis();
+                System.out.println("FPS: " + frames + " | UPS: " + updates);
+                frames = 0;
+                updates = 0;
+
+            }
+        }
+        
     }
 
 }
