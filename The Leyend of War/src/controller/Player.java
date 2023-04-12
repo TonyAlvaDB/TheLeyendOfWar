@@ -22,6 +22,8 @@ public class Player extends Entity{
     public Player(GamePanel gamePanel, KeyHandler keyH){
         this.gamePanel = gamePanel;
         this.keyH = keyH;
+        
+        setDefaultValues();
     }
 
     public void setDefaultValues(){
