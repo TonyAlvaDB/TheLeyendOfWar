@@ -27,7 +27,7 @@ public class Player extends Entity{
     public Player(GamePanel gamePanel, KeyHandler keyH){
         this.gamePanel = gamePanel;
         this.keyH = keyH;
-        
+        getPlayerImage();
         setDefaultValues();
     }
 
@@ -40,18 +40,18 @@ public class Player extends Entity{
     
     public void getPlayerImage(){
         try {
-            up1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("/player/soldier_up_1.png"));
-            up2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("/player/soldier_up_2.png"));
-            up3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("/player/soldier_up_3.png"));
-            down1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("/player/soldier_down_1.png"));
-            down2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("/player/soldier_down_2.png"));
-            down3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("/player/soldier_down_3.png"));
-            left1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("/player/soldier_left_1.png"));
-            left2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("/player/soldier_left_2.png"));
-            left3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("/player/soldier_left_3.png"));
-            right1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("/player/soldier_right_1.png"));
-            right2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("/player/soldier_right_2.png"));
-            right3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("/player/soldier_right_3.png"));
+            up1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/soldier_up_1.png"));
+            up2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/soldier_up_2.png"));
+            up3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/soldier_up_3.png"));
+            down1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/soldier_down_1.png"));
+            down2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/soldier_down_2.png"));
+            down3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/soldier_down_3.png"));
+            left1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/soldier_left_1.png"));
+            left2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/soldier_left_2.png"));
+            left3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/soldier_left_3.png"));
+            right1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/soldier_right_1.png"));
+            right2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/soldier_right_2.png"));
+            right3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/soldier_right_3.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,10 +94,11 @@ public class Player extends Entity{
                 image = right1;
                 break;
         }
-        g2.drawImage(image, x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE,);
+        g2.drawImage(image, x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
  
 //        g2.setColor(Color.white);
 //        g2.fillRect(x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        
         
         
     }

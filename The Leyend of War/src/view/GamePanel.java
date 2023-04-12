@@ -7,6 +7,7 @@ package view;
 
 import controller.KeyHandler;
 import controller.Player;
+import controller.TileManager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -39,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
     int playerY = 100;
     int speed = 4;
     
-    
+    TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
     Player player = new Player(this, keyH);
@@ -65,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+        tileM.draw(g2);
         
         player.draw(g2);
 
