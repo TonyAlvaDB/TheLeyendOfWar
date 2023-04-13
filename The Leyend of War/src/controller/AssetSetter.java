@@ -5,8 +5,6 @@
 
 package controller;
 
-import java.awt.image.BufferedImage;
-
 /**
  *
  * Program created by
@@ -14,10 +12,6 @@ import java.awt.image.BufferedImage;
  * Software Engeneer Student - UIA
  *
  */
-public class SuperObject {
-    public BufferedImage image;
-    public String name;
-    public boolean collision = false;
-    public int worldX, worldY;
-    
+public class AssetSetter {
+
 }

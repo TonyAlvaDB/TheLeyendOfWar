@@ -8,6 +8,7 @@ package view;
 import controller.CollisionChecker;
 import controller.KeyHandler;
 import controller.Player;
+import controller.SuperObject;
 import controller.TileManager;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -52,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
     public Player player = new Player(this, keyH);
+    public SuperObject obj[] = new SuperObject[10];
     
     public GamePanel(){
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
