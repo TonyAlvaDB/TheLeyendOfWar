@@ -44,12 +44,12 @@ public class KeyHandler implements KeyListener{
         if(code==KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
             rightPressed = true;
         }
-//        if(code==KeyEvent.VK_P){
-//            if(gamePanel.gameState == gamePanel.PLAY_STATE)
-//                gamePanel.gameState = gamePanel.PAUSE_STATE;
-//            else if (gamePanel.gameState == gamePanel.PAUSE_STATE)
-//                gamePanel.gameState = gamePanel.PLAY_STATE;
-//        }
+        if(code==KeyEvent.VK_P){
+            if(gamePanel.gameState == gamePanel.PLAY_STATE)
+                gamePanel.gameState = gamePanel.PAUSE_STATE;
+            else if (gamePanel.gameState == gamePanel.PAUSE_STATE)
+                gamePanel.gameState = gamePanel.PLAY_STATE;
+        }
     }
 
     

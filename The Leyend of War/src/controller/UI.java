@@ -46,12 +46,12 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.white);
         
-//        if(gamePanel.gameState == gamePanel.PLAY_STATE){
-//            
-//        }
-//        if(gamePanel.gameState == gamePanel.PAUSE_STATE){
-//            drawPauseScreen();
-//        }
+        if(gamePanel.gameState == gamePanel.PLAY_STATE){
+            
+        }
+        if(gamePanel.gameState == gamePanel.PAUSE_STATE){
+            drawPauseScreen();
+        }
         
     }
     public void drawPauseScreen(){
