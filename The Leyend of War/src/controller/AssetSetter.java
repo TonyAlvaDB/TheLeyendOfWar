@@ -5,6 +5,8 @@
 
 package controller;
 
+import view.GamePanel;
+
 /**
  *
  * Program created by
@@ -13,5 +15,19 @@ package controller;
  *
  */
 public class AssetSetter {
-
+    GamePanel gamePanel;
+    
+    public AssetSetter(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
+    }
+    public void setObject(){
+        gamePanel.obj[0] = new ObjectKey();
+        gamePanel.obj[0].worldX = 20 * gamePanel.TILE_SIZE;
+        gamePanel.obj[0].worldY = 20 * gamePanel.TILE_SIZE;
+    
+        gamePanel.obj[1] = new ObjectKey();
+        gamePanel.obj[1].worldX = 19 * gamePanel.TILE_SIZE;
+        gamePanel.obj[1].worldY = 18 * gamePanel.TILE_SIZE;
+    
+    }
 }

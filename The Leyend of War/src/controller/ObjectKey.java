@@ -18,11 +18,12 @@ import view.GamePanel;
  */
 public class ObjectKey extends SuperObject {
     
-    GamePanel gamePanel;
     
-    public ObjectKey(GamePanel gamePanel){
-        this.gamePanel = gamePanel;
+    
+    public ObjectKey(){
+        
         name = "Key";
+        
         try {
             image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("objects/key_1.png"));
         } catch (IOException e) {
