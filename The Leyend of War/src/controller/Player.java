@@ -27,6 +27,7 @@ public class Player extends Entity {
 
     public final int SCREEN_X;
     public final int SCREEN_Y;
+    int hasKey = 0;
 
     public Player(GamePanel gamePanel, KeyHandler keyH) {
         this.gamePanel = gamePanel;
@@ -38,8 +39,8 @@ public class Player extends Entity {
         solidArea = new Rectangle();
         solidArea.x = 16;
         solidArea.y = 33;
-//        solidAreaDefaultX = solidArea.x;
-//        solidAreaDefaultY = solidArea.y;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
         solidArea.width = 15;
         solidArea.height = 15;
 
@@ -97,6 +98,9 @@ public class Player extends Entity {
 
             collisionOn = false;
             gamePanel.cChecker.checkTile(this);
+            
+            int objectIndex = gamePanel.cChecker.checkObject(this, true);
+            pickupObject(objectIndex);
 
             if (collisionOn == false) {
                 switch (direction) {
@@ -127,6 +131,26 @@ public class Player extends Entity {
 
         }
 
+    }
+    
+    public void pickupObject(int i){
+        if(i != 999){
+            String objectName = gamePanel.obj[i].name;
+            switch(objectName){
+                case "Key":
+                    hasKey++;
+                    gamePanel.obj[i] = null;
+                    break;
+                    
+                case "Chest":
+                    if(hasKey>0){
+                        gamePanel.obj[i] = null;
+                        hasKey--;
+                    }
+                    break;
+                    
+            }
+        }
     }
 
     public void draw(Graphics g2) {
