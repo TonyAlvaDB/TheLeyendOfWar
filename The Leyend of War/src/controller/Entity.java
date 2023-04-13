@@ -33,11 +33,53 @@ public class Entity {
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
+    public int actionLockCounter= 0;
 
     public Entity(GamePanel gamePanel){
         this.gamePanel = gamePanel;
     }
 
+    public void setAction(){
+    
+    }
+
+    public void update(){
+        setAction();
+        
+        collisionOn = false;
+        gamePanel.cChecker.checkTile(this);
+        gamePanel.cChecker.checkObject(this, false);
+        gamePanel.cChecker.checkPlayer(this);
+        
+        if (collisionOn == false) {
+            switch (direction) {
+                case "up":
+                    worldY -= speed;
+                    break;
+                case "down":
+                    worldY += speed;
+                    break;
+                case "left":
+                    worldX -= speed;
+                    break;
+                case "right":
+                    worldX += speed;
+                    break;
+            }
+
+            }
+
+            spriteCounter++;
+            if (spriteCounter == 50) {
+                spriteNum++;
+                if (spriteNum > 4) {
+                    spriteNum = 1;
+                }
+                spriteCounter = 0;
+            }
+        
+    }
+    
     public BufferedImage setup(String imageName){
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
@@ -49,7 +91,7 @@ public class Entity {
         }
         return image;
     } 
-    public void draw(Graphics2D g2, GamePanel gamePanel){
+    public void draw(Graphics2D g2){
         BufferedImage image = null;
         int screenX =  worldX - gamePanel.player.worldX + gamePanel.player.SCREEN_X;
         int screenY =  worldY - gamePanel.player.worldY + gamePanel.player.SCREEN_Y;

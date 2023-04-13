@@ -5,6 +5,7 @@
 
 package controller;
 
+import java.util.Random;
 import view.GamePanel;
 
 /**
@@ -40,5 +41,29 @@ public class NpcMage extends Entity{
         right3 = setup("npc/mage_right_3.png");
     }
 
+    public void setAction(){
+        actionLockCounter++;
+        
+        if(actionLockCounter == 120){
+            Random random = new Random();
+            int i = random.nextInt(100)+1;
+            if(i <= 25){
+                direction = "up";
+            }
+            if(i > 25 && i <= 50){
+                direction = "down";
+            }
+            if(i > 50 && i <= 75){
+                direction = "left";
+            }
+            if(i > 75 && i <= 100){
+                direction = "right";
+            }
+            actionLockCounter = 0;
+        }
+        
+        
+        
+    }
 
 }

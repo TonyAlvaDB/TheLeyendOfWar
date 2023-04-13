@@ -98,6 +98,9 @@ public class Player extends Entity {
             int objectIndex = gamePanel.cChecker.checkObject(this, true);
             pickupObject(objectIndex);
 
+            int npcIndex = gamePanel.cChecker.checkEntity(this, gamePanel.npc);
+            interactNpc(npcIndex);
+            
             if (collisionOn == false) {
                 switch (direction) {
                     case "up":
@@ -132,6 +135,12 @@ public class Player extends Entity {
     public void pickupObject(int i){
         if(i != 999){
             
+        }
+    }
+    
+    private void interactNpc(int i) {
+        if(i != 999){
+            System.out.println("You are hitting an NPC");
         }
     }
 
@@ -200,4 +209,6 @@ public class Player extends Entity {
 //        g2.setColor(Color.white);
 //        g2.fillRect(x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
     }
+
+    
 }

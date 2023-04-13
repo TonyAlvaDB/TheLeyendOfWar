@@ -66,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable{
     public int gameState;
     public final int PLAY_STATE = 1;
     public final int PAUSE_STATE = 2;
+    public final int DIALOGUE_STATE = 3;
     
     public GamePanel(){
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
@@ -88,8 +89,14 @@ public class GamePanel extends JPanel implements Runnable{
     }
     
     public void update(){
-        if(gameState == PLAY_STATE)
+        if(gameState == PLAY_STATE){
             player.update();
+            for (int i = 0; i < npc.length; i++) {
+                if(npc[i] != null)
+                    npc[i].update();
+            }
+        }
+            
         if(gameState == PAUSE_STATE){
             
         }
@@ -110,7 +117,7 @@ public class GamePanel extends JPanel implements Runnable{
         
         for (int i = 0; i < npc.length; i++) {
             if(npc[i]!= null)
-                npc[i].draw(g2, this);
+                npc[i].draw(g2);
         }
         
         player.draw(g2);
