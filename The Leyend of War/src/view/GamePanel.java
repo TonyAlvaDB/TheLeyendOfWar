@@ -5,6 +5,7 @@
 
 package view;
 
+import controller.CollisionChecker;
 import controller.KeyHandler;
 import controller.Player;
 import controller.TileManager;
@@ -49,6 +50,7 @@ public class GamePanel extends JPanel implements Runnable{
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
+    CollisionChecker cChecker = new CollisionChecker(this);
     public Player player = new Player(this, keyH);
     
     public GamePanel(){

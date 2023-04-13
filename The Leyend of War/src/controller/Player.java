@@ -7,6 +7,7 @@ package controller;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -33,6 +34,15 @@ public class Player extends Entity {
         
         SCREEN_X = (gamePanel.SCREEN_WIDTH/2) - (gamePanel.TILE_SIZE/2);
         SCREEN_Y = (gamePanel.SCREEN_HEIGHT/2) - (gamePanel.TILE_SIZE/2);
+        
+        solidArea = new Rectangle();
+        solidArea.x = 16;
+        solidArea.y = 33;
+//        solidAreaDefaultX = solidArea.x;
+//        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 15;
+        solidArea.height = 15;
+        
         
         getPlayerImage();
         setDefaultValues();
