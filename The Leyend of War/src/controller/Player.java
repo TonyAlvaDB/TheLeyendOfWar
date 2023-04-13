@@ -22,15 +22,16 @@ import view.GamePanel;
  */
 public class Player extends Entity {
 
-    GamePanel gamePanel;
     KeyHandler keyH;
 
     public final int SCREEN_X;
     public final int SCREEN_Y;
-    public int hasKey = 0;
 
     public Player(GamePanel gamePanel, KeyHandler keyH) {
-        this.gamePanel = gamePanel;
+        
+        super(gamePanel);
+        
+
         this.keyH = keyH;
 
         SCREEN_X = (gamePanel.SCREEN_WIDTH / 2) - (gamePanel.TILE_SIZE / 2);
@@ -143,23 +144,7 @@ public class Player extends Entity {
     
     public void pickupObject(int i){
         if(i != 999){
-            String objectName = gamePanel.obj[i].name;
-            switch(objectName){
-                case "Key":
-                    gamePanel.playSFX(4);
-                    hasKey++;
-                    gamePanel.obj[i] = null;
-                    break;
-                    
-                case "Chest":
-                    if(hasKey>0){
-                        gamePanel.playSFX(5);
-                        gamePanel.obj[i] = null;
-                        hasKey--;
-                    }
-                    break;
-                    
-            }
+            
         }
     }
 
