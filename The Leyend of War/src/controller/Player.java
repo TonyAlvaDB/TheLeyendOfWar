@@ -4,13 +4,10 @@
  */
 package controller;
 
-import java.awt.Color;
+
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import view.GamePanel;
 
 /**
@@ -72,17 +69,7 @@ public class Player extends Entity {
         right3 = setup("player/soldier_right_3.png");
     }
 
-    public BufferedImage setup(String imageName){
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-        try {
-            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(imageName));
-            image = uTool.scaleImage(image, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
+    
     public void update() {
         if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
             if (keyH.upPressed) {

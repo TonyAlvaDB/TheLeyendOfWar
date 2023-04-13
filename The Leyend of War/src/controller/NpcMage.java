@@ -5,9 +5,6 @@
 
 package controller;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import view.GamePanel;
 
 /**
@@ -24,9 +21,10 @@ public class NpcMage extends Entity{
         
         direction = "down";
         speed = 1;
+        getNpcImage();
     }
     
-    public void getPlayerImage() {
+    public void getNpcImage() {
        
         up1 = setup("npc/mage_up_1.png");
         up2 = setup("npc/mage_up_2.png");
@@ -42,15 +40,5 @@ public class NpcMage extends Entity{
         right3 = setup("npc/mage_right_3.png");
     }
 
-    public BufferedImage setup(String imageName){
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-        try {
-            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(imageName));
-            image = uTool.scaleImage(image, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
+
 }

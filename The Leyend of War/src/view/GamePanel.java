@@ -7,6 +7,7 @@ package view;
 
 import controller.AssetSetter;
 import controller.CollisionChecker;
+import controller.Entity;
 import controller.KeyHandler;
 import controller.Player;
 import controller.Sound;
@@ -60,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable{
     Sound soundSFX = new Sound();
     public Player player = new Player(this, keyH);
     public SuperObject obj[] = new SuperObject[20];
+    public Entity npc[] = new Entity[10];
     
     public int gameState;
     public final int PLAY_STATE = 1;
@@ -75,6 +77,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     public void setupGame(){
         aSetter.setObject();
+        aSetter.setNpc();
         playMusic(2);
         gameState = PLAY_STATE;
     }
@@ -103,6 +106,11 @@ public class GamePanel extends JPanel implements Runnable{
             if(obj[i] != null){
                 obj[i].draw(g2, this);
             }
+        }
+        
+        for (int i = 0; i < npc.length; i++) {
+            if(npc[i]!= null)
+                npc[i].draw(g2, this);
         }
         
         player.draw(g2);

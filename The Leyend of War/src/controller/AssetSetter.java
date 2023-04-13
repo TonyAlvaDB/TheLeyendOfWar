@@ -24,4 +24,12 @@ public class AssetSetter {
 
     
     }
+    
+    public void setNpc(){
+        gamePanel.npc[0] = new NpcMage(gamePanel);
+        gamePanel.npc[0].worldX = gamePanel.TILE_SIZE*21;
+        gamePanel.npc[0].worldY = gamePanel.TILE_SIZE*21;
+        
+    
+    }
 }
