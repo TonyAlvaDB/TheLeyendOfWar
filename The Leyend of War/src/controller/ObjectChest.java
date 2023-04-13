@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
  */
 public class ObjectChest extends SuperObject{
     
-    public void ObjectKey(){
+    public ObjectChest(){
         
         name = "Chest";
         
