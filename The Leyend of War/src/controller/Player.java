@@ -77,22 +77,61 @@ public class Player extends Entity{
             direction = "right";
         }
             
+        spriteCounter++;
+        
+        spriteCounter++;
+        if(spriteCounter ==100){
+            spriteNum++;
+            if(spriteNum > 4)
+                spriteNum = 1;
+            spriteCounter = 0;
+        }
+            
+        
     }
     public void draw(Graphics g2){
         BufferedImage image = null;
         switch(direction){
             case "up":
-                image = up1;
+                if(spriteNum == 1)
+                    image = up1;
+                if(spriteNum == 2)
+                    image = up2;
+                if(spriteNum == 3)
+                    image = up3;
+                if(spriteNum == 4)
+                    image = up2;
                 break;
             case "down":
-                image = down1;
+                if(spriteNum ==1)
+                    image = down1;
+                if(spriteNum == 2)
+                    image = down2;
+                if(spriteNum == 3)
+                    image = down3;
+                if(spriteNum == 4)
+                    image = down2;
                 break;
             case "left":
-                image = left1;
+                if(spriteNum ==1)
+                    image = left1;
+                if(spriteNum == 2)
+                    image = left2;
+                if(spriteNum == 3)
+                    image = left3;
+                if(spriteNum == 4)
+                    image = left2;
                 break;
             case "right":
-                image = right1;
-                break;
+                if(spriteNum ==1)
+                    image = right1;
+                if(spriteNum == 2)
+                    image = right2;
+                if(spriteNum == 3)
+                    image = right3;
+                if(spriteNum == 4)
+                    image = right2;
+                break;                
         }
         g2.drawImage(image, x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
  

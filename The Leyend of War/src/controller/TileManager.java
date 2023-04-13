@@ -36,7 +36,6 @@ public class TileManager {
     
     public void loadMap(){
         try {
-            System.out.println("starting");
             InputStream is = getClass().getResourceAsStream("/maps/map01.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             
@@ -51,12 +50,13 @@ public class TileManager {
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[col][row] = num;
                     col++;
+                    
+                    }
                     if(col == gamePanel.MAX_SCREEN_COL){
                         col = 0;
                         row++;
-                    }
                 }
-                System.out.println("starting");
+                
             }
             br.close();
             
@@ -76,13 +76,13 @@ public class TileManager {
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/road_1.png"));
             tile[4] = new Tile();
-            tile[4].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/water_1.png"));
+            tile[4].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/wall_1.png"));
             tile[5] = new Tile();
-            tile[5].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/wall_1.png"));
+            tile[5].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/wall_2.png"));
             tile[6] = new Tile();
-            tile[6].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/wall_2.png"));
+            tile[6].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/wall_3.png"));
             tile[7] = new Tile();
-            tile[7].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/wall_3.png"));
+            tile[7].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/water_1.png"));
             tile[8] = new Tile();
             tile[8].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/cactu_1.png"));
             tile[9] = new Tile();
