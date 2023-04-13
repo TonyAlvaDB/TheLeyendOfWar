@@ -19,13 +19,14 @@ import view.GamePanel;
 public class ObjectKey extends SuperObject {
     
     
-    
-    public ObjectKey(){
-        
+    GamePanel gamePanel;
+    public ObjectKey(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
         name = "Key";
         
         try {
             image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("objects/key_1.png"));
+            uTool.scaleImage(image, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         } catch (IOException e) {
             e.printStackTrace();
         }

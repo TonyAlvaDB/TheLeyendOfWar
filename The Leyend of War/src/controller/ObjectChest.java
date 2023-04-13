@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import view.GamePanel;
 
 /**
  *
@@ -16,13 +17,14 @@ import javax.imageio.ImageIO;
  *
  */
 public class ObjectChest extends SuperObject{
-    
-    public ObjectChest(){
-        
+    GamePanel gamePanel;
+    public ObjectChest(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
         name = "Chest";
         
         try {
             image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("objects/chest_2.png"));
+            uTool.scaleImage(image, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         } catch (IOException e) {
             e.printStackTrace();
         }
