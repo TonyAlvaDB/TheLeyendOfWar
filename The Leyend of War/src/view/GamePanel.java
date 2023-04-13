@@ -46,13 +46,10 @@ public class GamePanel extends JPanel implements Runnable{
     
     final int FPS = 120;
     final int UPS = 200;
-    
-    int playerX = 100;
-    int playerY = 100;
-    int speed = 4;
+
     
     public TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler(this);
+    public KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
@@ -79,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void setupGame(){
         aSetter.setObject();
         aSetter.setNpc();
-        playMusic(2);
+        playMusic(1);
         gameState = PLAY_STATE;
     }
 

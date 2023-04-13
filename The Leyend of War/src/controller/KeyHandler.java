@@ -20,7 +20,7 @@ public class KeyHandler implements KeyListener{
 
     
     GamePanel gamePanel;
-    public boolean upPressed, downPressed, leftPressed, rightPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
     
     public KeyHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -31,25 +31,40 @@ public class KeyHandler implements KeyListener{
 
     
     public void keyPressed(KeyEvent e) {
-        int code = e.getKeyCode();
-        if(code==KeyEvent.VK_W || code == KeyEvent.VK_UP){
-            upPressed = true;
-        }
-        if(code==KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
-            downPressed = true;
-        }
-        if(code==KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
-            leftPressed = true;
-        }
-        if(code==KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
-            rightPressed = true;
-        }
-        if(code==KeyEvent.VK_P){
-            if(gamePanel.gameState == gamePanel.PLAY_STATE)
+        if(gamePanel.gameState == gamePanel.PLAY_STATE){
+            int code = e.getKeyCode();
+            if(code==KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                upPressed = true;
+            }
+            if(code==KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                downPressed = true;
+            }
+            if(code==KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
+                leftPressed = true;
+            }
+            if(code==KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
+                rightPressed = true;
+            }
+            if(code==KeyEvent.VK_P){
                 gamePanel.gameState = gamePanel.PAUSE_STATE;
-            else if (gamePanel.gameState == gamePanel.PAUSE_STATE)
+                
+            }        
+            if(code == KeyEvent.VK_ENTER){
+                enterPressed = true;
+            }
+        }
+        
+        else if(gamePanel.gameState == gamePanel.DIALOGUE_STATE){
+            int code = e.getKeyCode();
+            if (code == KeyEvent.VK_ENTER)
                 gamePanel.gameState = gamePanel.PLAY_STATE;
         }
+        else if(gamePanel.gameState == gamePanel.PAUSE_STATE){
+            int code = e.getKeyCode();
+            if(code==KeyEvent.VK_P)
+                gamePanel.gameState = gamePanel.PLAY_STATE;
+        }
+        
     }
 
     

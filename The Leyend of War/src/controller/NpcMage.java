@@ -70,9 +70,14 @@ public class NpcMage extends Entity{
     }
 
     public void setDialogue(){
-        dialogues[0] = "Hello, lad.";
+        dialogues[0] = "No puedo creerlo \n... \nEres War!";
+        dialogues[1] = "El miedo se apodera del \ndesierto, como de ti al ver \nun arbol binario.";
+        dialogues[2] = "Ayudanos a salvar el desierto, \nWar.";
+        dialogues[3] = "Porfi xd.";
+        
     }
     public void speak(){
-        gamePanel.ui.currentDialogue = dialogues[0];
+        
+        super.speak();
     }
 }
