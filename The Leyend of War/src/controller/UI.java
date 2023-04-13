@@ -5,10 +5,10 @@
 
 package controller;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.text.DecimalFormat;
 import view.GamePanel;
 
 /**
@@ -26,8 +26,8 @@ public class UI {
     public String message = "";
     int messageCounter = 0;
     public boolean gameFinished = false;
-    double playTime;
-    DecimalFormat dFormat = new DecimalFormat("#0.00");
+    public String currentDialogue = "";
+
     
     public UI(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -52,6 +52,9 @@ public class UI {
         if(gamePanel.gameState == gamePanel.PAUSE_STATE){
             drawPauseScreen();
         }
+        if(gamePanel.gameState == gamePanel.DIALOGUE_STATE){
+            drawDialogueScreen();
+        }
         
     }
     public void drawPauseScreen(){
@@ -71,6 +74,33 @@ public class UI {
         int x = (gamePanel.SCREEN_WIDTH/2) - (length/2);
         return x;
 
+    }
+
+    private void drawDialogueScreen() {
+        
+        int x = gamePanel.TILE_SIZE *2;
+        int y = gamePanel.TILE_SIZE /2;
+        int width = gamePanel.SCREEN_WIDTH - (gamePanel.TILE_SIZE*4);
+        int height = gamePanel.TILE_SIZE * 4;
+        
+        drawSubWindow(x, y, width, height);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN));
+        x += gamePanel.TILE_SIZE;
+        y += gamePanel.TILE_SIZE;
+        g2.drawString(currentDialogue, x, y);
+        
+    }
+    
+    public void drawSubWindow(int x, int y, int width, int height){
+        Color c = new Color(0, 0, 0, 220);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+        
+        c = new Color(255, 255, 255);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+        
     }
     
 }

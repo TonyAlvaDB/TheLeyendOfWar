@@ -23,6 +23,9 @@ public class NpcMage extends Entity{
         direction = "down";
         speed = 1;
         getNpcImage();
+        
+        setDialogue();
+        
     }
     
     public void getNpcImage() {
@@ -44,7 +47,7 @@ public class NpcMage extends Entity{
     public void setAction(){
         actionLockCounter++;
         
-        if(actionLockCounter == 120){
+        if(actionLockCounter == 400){
             Random random = new Random();
             int i = random.nextInt(100)+1;
             if(i <= 25){
@@ -66,4 +69,10 @@ public class NpcMage extends Entity{
         
     }
 
+    public void setDialogue(){
+        dialogues[0] = "Hello, lad.";
+    }
+    public void speak(){
+        gamePanel.ui.currentDialogue = dialogues[0];
+    }
 }
