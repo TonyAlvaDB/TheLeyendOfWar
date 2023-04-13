@@ -9,8 +9,10 @@ import controller.AssetSetter;
 import controller.CollisionChecker;
 import controller.KeyHandler;
 import controller.Player;
+import controller.Sound;
 import controller.SuperObject;
 import controller.TileManager;
+import controller.UI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -38,8 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     public final int MAX_WORLD_COL = 50;
     public final int MAX_WORLD_ROW = 50;
-    public final int MAX_WORLD_WIDTH = TILE_SIZE * MAX_WORLD_COL;
-    public final int MAX_WORLD_HEIGHT = TILE_SIZE * MAX_WORLD_ROW;
+
     
     
     final int FPS = 60;
@@ -54,6 +55,9 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
+    public UI ui = new UI(this);
+    Sound soundMusic = new Sound();
+    Sound soundSFX = new Sound();
     public Player player = new Player(this, keyH);
     public SuperObject obj[] = new SuperObject[20];
     
@@ -67,6 +71,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     public void setupGame(){
         aSetter.setObject();
+        playMusic(2);
     }
 
     public void startGameThread(){
@@ -92,8 +97,20 @@ public class GamePanel extends JPanel implements Runnable{
         }
         
         player.draw(g2);
-
+        ui.draw(g2);
         g2.dispose();
+    }
+    public void playMusic(int i){
+        soundMusic.setFile(i);
+        soundMusic.play();
+        soundMusic.loop();
+    }
+    public void stopMusic(){
+        soundMusic.stop();
+    }
+    public void playSFX(int i){
+        soundSFX.setFile(i);
+        soundSFX.play();
     }
 
     public void run() {

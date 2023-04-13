@@ -27,7 +27,7 @@ public class Player extends Entity {
 
     public final int SCREEN_X;
     public final int SCREEN_Y;
-    int hasKey = 0;
+    public int hasKey = 0;
 
     public Player(GamePanel gamePanel, KeyHandler keyH) {
         this.gamePanel = gamePanel;
@@ -138,12 +138,14 @@ public class Player extends Entity {
             String objectName = gamePanel.obj[i].name;
             switch(objectName){
                 case "Key":
+                    gamePanel.playSFX(4);
                     hasKey++;
                     gamePanel.obj[i] = null;
                     break;
                     
                 case "Chest":
                     if(hasKey>0){
+                        gamePanel.playSFX(5);
                         gamePanel.obj[i] = null;
                         hasKey--;
                     }
