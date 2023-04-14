@@ -64,6 +64,11 @@ public class KeyHandler implements KeyListener{
             if(code==KeyEvent.VK_P)
                 gamePanel.gameState = gamePanel.PLAY_STATE;
         }
+        else if(gamePanel.gameState == gamePanel.TITLE_STATE){
+            int code = e.getKeyCode();
+            if(code==KeyEvent.VK_ENTER)
+                gamePanel.gameState = gamePanel.PLAY_STATE;
+        }
         
     }
 

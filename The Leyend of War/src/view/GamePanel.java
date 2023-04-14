@@ -61,9 +61,11 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity npc[] = new Entity[10];
     
     public int gameState;
+    public final int TITLE_STATE = 0;
     public final int PLAY_STATE = 1;
     public final int PAUSE_STATE = 2;
     public final int DIALOGUE_STATE = 3;
+    
     
     public GamePanel(){
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
@@ -76,10 +78,11 @@ public class GamePanel extends JPanel implements Runnable{
     public void setupGame(){
         aSetter.setObject();
         aSetter.setNpc();
-        playMusic(0);
-        gameState = PLAY_STATE;
+        playMusic(1);
+        gameState = TITLE_STATE;
+        
     }
-
+    
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
@@ -104,22 +107,31 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         
-        tileM.draw(g2);
-        
-        for (int i = 0; i < obj.length; i++) {
-            if(obj[i] != null){
-                obj[i].draw(g2, this);
+        if(gameState == TITLE_STATE){
+            ui.draw(g2);
+        } else{
+            tileM.draw(g2);
+
+            for (int i = 0; i < obj.length; i++) {
+                if(obj[i] != null){
+                    obj[i].draw(g2, this);
+                }
             }
+
+            for (int i = 0; i < npc.length; i++) {
+                if(npc[i]!= null)
+                    npc[i].draw(g2);
+            }
+
+            player.draw(g2);
+            ui.draw(g2);
+            g2.dispose();    
         }
         
-        for (int i = 0; i < npc.length; i++) {
-            if(npc[i]!= null)
-                npc[i].draw(g2);
-        }
         
-        player.draw(g2);
-        ui.draw(g2);
-        g2.dispose();
+        
+        
+        
     }
     public void playMusic(int i){
         soundMusic.setFile(i);

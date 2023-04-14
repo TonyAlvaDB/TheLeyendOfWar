@@ -9,6 +9,9 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import view.GamePanel;
 
 /**
@@ -41,6 +44,10 @@ public class UI {
     }
     
     public void draw(Graphics2D g2){
+        
+        if(gamePanel.gameState == gamePanel.TITLE_STATE){
+            drawTitleScreen(g2);
+        }
         
         this.g2 = g2;
         g2.setFont(arial_40);
@@ -103,6 +110,17 @@ public class UI {
         g2.setColor(c);
         g2.setStroke(new BasicStroke(5));
         g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+        
+    }
+
+    private void drawTitleScreen(Graphics2D g2) {
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("background/background.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        g2.drawImage(image,0, 0,gamePanel.SCREEN_WIDTH, gamePanel.SCREEN_HEIGHT + (gamePanel.TILE_SIZE*3), null);
         
     }
     
