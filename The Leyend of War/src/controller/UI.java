@@ -25,6 +25,7 @@ public class UI {
     GamePanel gamePanel;
     Font arial_40, arial_80B;
     Graphics2D g2;
+    BufferedImage full_heart, mid_heart, empty_heart;
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
@@ -36,6 +37,11 @@ public class UI {
         this.gamePanel = gamePanel;
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
+        
+        SuperObject heart = new ObjectHeart(gamePanel);
+        full_heart = heart.image;
+        mid_heart = heart.image2;
+        empty_heart = heart.image3;
     }
 
     public void showMessage(String text){
@@ -54,12 +60,15 @@ public class UI {
         g2.setColor(Color.white);
         
         if(gamePanel.gameState == gamePanel.PLAY_STATE){
-            
+            drawPlayerLife();
         }
         if(gamePanel.gameState == gamePanel.PAUSE_STATE){
+            drawPlayerLife();
             drawPauseScreen();
+            
         }
         if(gamePanel.gameState == gamePanel.DIALOGUE_STATE){
+            drawPlayerLife();
             drawDialogueScreen();
         }
         
@@ -121,6 +130,31 @@ public class UI {
             e.printStackTrace();
         }
         g2.drawImage(image,0, 0,gamePanel.SCREEN_WIDTH, gamePanel.SCREEN_HEIGHT + (gamePanel.TILE_SIZE*3), null);
+        
+    }
+
+    private void drawPlayerLife() {
+        int x = gamePanel.TILE_SIZE/2;
+        int y = gamePanel.TILE_SIZE/2;
+        int i = 0;
+        while(i < gamePanel.player.maxLife/2){
+            g2.drawImage(empty_heart, x, y, null);
+            i++;
+            x += gamePanel.TILE_SIZE;
+        }
+        x = gamePanel.TILE_SIZE/2;
+        y = gamePanel.TILE_SIZE/2;
+        i = 0;
+        while(i < gamePanel.player.life){
+            g2.drawImage(mid_heart, x, y, null);
+            i++;
+            if(i < gamePanel.player.life){
+                g2.drawImage(full_heart, x, y, null);
+            }
+            i++;
+            x+= gamePanel.TILE_SIZE;
+        }
+        
         
     }
     

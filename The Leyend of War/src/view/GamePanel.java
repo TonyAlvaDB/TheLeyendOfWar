@@ -8,6 +8,7 @@ package view;
 import controller.AssetSetter;
 import controller.CollisionChecker;
 import controller.Entity;
+import controller.EventHandler;
 import controller.KeyHandler;
 import controller.Player;
 import controller.Sound;
@@ -50,6 +51,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     public TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
+    public EventHandler eHander = new EventHandler(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
@@ -78,7 +80,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void setupGame(){
         aSetter.setObject();
         aSetter.setNpc();
-        playMusic(1);
+//        playMusic(1);
         gameState = TITLE_STATE;
         
     }
