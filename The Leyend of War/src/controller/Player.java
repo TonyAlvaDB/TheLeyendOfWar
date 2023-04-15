@@ -101,22 +101,15 @@ public class Player extends Entity {
                 || keyH.rightPressed == true
                 || keyH.enterPressed == true) {
             if (keyH.upPressed) {
-
                 direction = "up";
             }
-
             if (keyH.downPressed) {
-
                 direction = "down";
             }
-
             if (keyH.leftPressed) {
-
                 direction = "left";
             }
-
             if (keyH.rightPressed) {
-
                 direction = "right";
             }
 
@@ -151,8 +144,10 @@ public class Player extends Entity {
                 }
 
             }
+            
             gamePanel.keyH.enterPressed = false;
-
+            gamePanel.keyH.spacePressed = false;
+            
             spriteCounter++;
             if (spriteCounter == 15) {
                 spriteNum++;
@@ -186,7 +181,7 @@ public class Player extends Entity {
                 gamePanel.gameState = gamePanel.DIALOGUE_STATE;
                 gamePanel.npc[i].speak();
             } else {
-                if (gamePanel.keyH.enterPressed == true) {
+                if (gamePanel.keyH.spacePressed == true) {
                     attacking = true;
                 }
             }
@@ -317,6 +312,7 @@ public class Player extends Entity {
                     }
                 }
                 break;
+
         }
         g2.drawImage(image, SCREEN_X, SCREEN_Y, null);
 
@@ -335,15 +331,18 @@ public class Player extends Entity {
     }
 
     private void attacking() {
-            spriteCounter++;
-            if (spriteCounter == 100) {
-                spriteNum++;
-                if (spriteNum > 4) {
-                    spriteNum = 1;
-                }
-                spriteCounter = 0;
-                attacking = false;
-            }
+        spriteCounter++;
+        if(spriteCounter <=5){
+            spriteNum = 1;
+        }
+        if (spriteCounter > 5 && spriteCounter <=25){
+            spriteNum = 2;
+        }
+        if(spriteCounter > 25){
+            spriteNum = 1;
+            spriteCounter = 0;
+            attacking=false;
+        }
     }
 
 }
