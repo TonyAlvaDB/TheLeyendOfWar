@@ -5,6 +5,7 @@
 package controller;
 
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -41,6 +42,9 @@ public class Player extends Entity {
         solidArea.width = 15;
         solidArea.height = 15;
         
+        attackArea.width = 36;
+        attackArea.height = 36;
+        
         
         getPlayerAttackImage();
         getPlayerImage();
@@ -57,6 +61,7 @@ public class Player extends Entity {
         direction = "down";
         maxLife = 6;
         life = maxLife;
+        
 
     }
 
@@ -164,7 +169,7 @@ public class Player extends Entity {
 
         if (invincible == true) {
             invincibleCounter++;
-            if (invincibleCounter > 90) {
+            if (invincibleCounter > 40) {
                 invincible = false;
                 invincibleCounter = 0;
             }
@@ -185,18 +190,22 @@ public class Player extends Entity {
                 gamePanel.npc[i].speak();
             } else {
                 if (gamePanel.keyH.enterPressed == true) {
+                    gamePanel.playSFX(6);
                     attacking = true;
                 }
             }
         }
     }
 
-    @Override
      public void draw(Graphics2D g2) {
+
+        int tempScreenX = SCREEN_X;
+        int tempScreenY = SCREEN_Y;
         BufferedImage image = null;
         switch (direction) {
             case "up":
                 if (attacking == true) {
+                    tempScreenY = SCREEN_Y - gamePanel.TILE_SIZE;
                     if (spriteNum == 1) {
                         image = attackUp1;
                     }
@@ -260,6 +269,7 @@ public class Player extends Entity {
                 break;
             case "left":
                 if (attacking == true) {
+                    tempScreenX = SCREEN_X - gamePanel.TILE_SIZE;
                     if (spriteNum == 1) {
                         image = attackLeft1;
                     }
@@ -323,7 +333,11 @@ public class Player extends Entity {
                 break;
 
         }
-        g2.drawImage(image, SCREEN_X, SCREEN_Y, null);
+        if (invincible == true){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+        }
+        g2.drawImage(image, tempScreenX, tempScreenY, null);
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
 //        g2.setColor(Color.white);
 //        g2.fillRect(x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
@@ -332,6 +346,7 @@ public class Player extends Entity {
     private void contactMonster(int i) {
         if (i != 999) {
             if (invincible == false) {
+                gamePanel.playSFX(4);
                 life -= 1;
                 invincible = true;
             }
@@ -344,16 +359,64 @@ public class Player extends Entity {
         if(spriteCounter <=10){
             spriteNum = 1;
         }
-        if (spriteCounter > 10 && spriteCounter <=20){
+        if (spriteCounter > 10 && spriteCounter <=30){
             spriteNum = 2;
+            
+            int currentWorldX = worldX;
+            int currentWorldY = worldY;
+            int solidAreaWidth = solidArea.width;
+            int solidAreaHeight = solidArea.height;
+            
+            switch(direction){
+            case"up":
+                worldY -= attackArea.height;
+                break;
+            case"down":
+                worldY += attackArea.height;
+                break;
+            case"left":
+                worldX -= attackArea.width;
+                break;
+            case"right":
+                worldX += attackArea.width;
+                break;
+            }
+            
+            solidArea.width = attackArea.width;
+            solidArea.height = attackArea.height;
+            
+            int monsterIndex = gamePanel.cChecker.checkEntity(this, gamePanel.monster);
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.width = solidAreaWidth;
+            solidArea.height = solidAreaHeight;
+            
+            damageMonster(monsterIndex);
+            
+            
         }
-        if (spriteCounter > 20 && spriteCounter <=30){
+        if (spriteCounter > 30 && spriteCounter <=35){
             spriteNum = 3;
         }
-        if(spriteCounter > 30){
+        if(spriteCounter > 35){
             spriteNum = 1;
             spriteCounter = 0;
             attacking=false;
+        }
+    }
+
+    private void damageMonster(int i) {
+        if(i != 999){
+            if(gamePanel.monster[i].invincible == false){
+                gamePanel.playSFX(4);
+                gamePanel.monster[i].life -=1;
+                gamePanel.monster[i].invincible = true;
+                
+                if(gamePanel.monster[i].life <= 0){
+                    gamePanel.monster[i].dying = true;
+                }
+                
+            }
         }
     }
 

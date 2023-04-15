@@ -85,7 +85,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setObject();
         aSetter.setNpc();
         aSetter.setMonster();
-//        playMusic(1);
+//        playMusic(4);
         gameState = TITLE_STATE;
         
     }
@@ -102,9 +102,19 @@ public class GamePanel extends JPanel implements Runnable{
                 if(npc[i] != null)
                     npc[i].update();
             }
+            
             for (int i = 0; i < monster.length; i++) {
-                if(monster[i] != null)
-                    monster[i].update();
+                if(monster[i] != null){
+                    if(monster[i].alive == true && monster[i].dying == false){
+                        monster[i].update();
+                    }
+                    if(monster[i].alive == false){
+                        monster[i] = null;
+                    }
+                }
+                
+                
+                    
             }
         }
             

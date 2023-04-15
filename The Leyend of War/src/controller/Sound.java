@@ -22,17 +22,22 @@ public class Sound {
     URL soundURL[] = new URL[30];
     
     public Sound(){
+        System.out.println("carga de sonidos");
         soundURL[0] = getClass().getResource("/sound/boss.wav");
         soundURL[1] = getClass().getResource("/sound/confurtatis.wav");
         soundURL[2] = getClass().getResource("/sound/retro_ambience_acute_01.wav");
         soundURL[3] = getClass().getResource("/sound/retro_charge_07.wav");
-        soundURL[4] = getClass().getResource("/sound/retro_event_19.wav");
+        soundURL[4] = getClass().getResource("/sound/slime_damage_1.wav");
         soundURL[5] = getClass().getResource("/sound/retro_event_49.wav");
         soundURL[6] = getClass().getResource("/sound/retro_event_acute_08.wav");
         soundURL[7] = getClass().getResource("/sound/retro_powerup_23.wav");
         soundURL[8] = getClass().getResource("/sound/retro_roar_02.wav");
         soundURL[9] = getClass().getResource("/sound/retro_weird_07.wav");
         soundURL[10] = getClass().getResource("/sound/toccata.wav");
+        soundURL[11] = getClass().getResource("/sound/slime_damage_1.wav");
+        soundURL[12] = getClass().getResource("/sound/player_damage_1.wav");
+        soundURL[13] = getClass().getResource("/sound/atk_sword_1.wav");
+        System.out.println("final ");
     }
     public void setFile(int i){
         try {
