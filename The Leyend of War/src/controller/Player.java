@@ -190,7 +190,7 @@ public class Player extends Entity {
                 gamePanel.npc[i].speak();
             } else {
                 if (gamePanel.keyH.enterPressed == true) {
-                    gamePanel.playSFX(6);
+                    gamePanel.playSFX(5);
                     attacking = true;
                 }
             }
@@ -408,7 +408,7 @@ public class Player extends Entity {
     private void damageMonster(int i) {
         if(i != 999){
             if(gamePanel.monster[i].invincible == false){
-                gamePanel.playSFX(4);
+                gamePanel.playSFX(3);
                 gamePanel.monster[i].life -=1;
                 gamePanel.monster[i].invincible = true;
                 
