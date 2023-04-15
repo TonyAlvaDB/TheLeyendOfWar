@@ -22,7 +22,7 @@ public class MonsterGreenSlime extends Entity{
         type = 2;
         name = "YellowSlime";
         speed = 1;
-        maxLife = 4;
+        maxLife = 8;
         life = maxLife;
         
         solidArea.x = 3;
@@ -69,5 +69,9 @@ public class MonsterGreenSlime extends Entity{
             actionLockCounter = 0;
         }
                 
+    }
+    public void damageReaction(){
+        actionLockCounter = 0;
+        direction = gamePanel.player.direction;
     }
 }

@@ -24,6 +24,7 @@ public class Player extends Entity {
 
     public final int SCREEN_X;
     public final int SCREEN_Y;
+    
 
     public Player(GamePanel gamePanel, KeyHandler keyH) {
 
@@ -411,6 +412,7 @@ public class Player extends Entity {
                 gamePanel.playSFX(3);
                 gamePanel.monster[i].life -=1;
                 gamePanel.monster[i].invincible = true;
+                gamePanel.monster[i].damageReaction();
                 
                 if(gamePanel.monster[i].life <= 0){
                     gamePanel.monster[i].dying = true;

@@ -6,6 +6,7 @@
 package controller;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -52,6 +53,21 @@ public class  Entity {
     public boolean alive = true;
     public boolean dying = false;
     int dyingCounter = 0;
+    boolean hpBarOn = false;
+    int hpBarCounter = 0;
+    public int level;
+    public int strength;
+    public int dexterity;
+    public int attack;
+    public int defense;
+    public int exp;
+    public int nextLevelExp;
+    public int coin;
+    public Entity currentWeapon;
+    public Entity currentShield;
+    
+    public int attackValue;
+    public int defenseValue;
             
     public Entity(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -60,6 +76,7 @@ public class  Entity {
     public void setAction(){
     
     }
+    public void damageReaction(){}
     public void speak(){
     if(dialogues[dialogueIndex] == null)
         dialogueIndex = 0;
@@ -219,7 +236,29 @@ public class  Entity {
                 }
                 break;
         }
+            
+            
+            if(type == 2 && hpBarOn == true){
+                double oneScale = (double)gamePanel.TILE_SIZE/maxLife;
+                double hpBarValue = oneScale*life;
+                
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(screenX-1, screenY - 16, gamePanel.TILE_SIZE+2, 12);
+                g2.setColor(new Color(255, 0, 30));
+                g2.fillRect(screenX, screenY - 15, (int)hpBarValue, 10);   
+                hpBarCounter++;
+                
+                if(hpBarCounter > 600){
+                    hpBarCounter = 0;
+                    hpBarOn = false;
+                }
+                
+            }
+            
+            
             if (invincible == true){
+                hpBarOn = true;
+                hpBarCounter = 0;
                 g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
             }
             if(dying == true)

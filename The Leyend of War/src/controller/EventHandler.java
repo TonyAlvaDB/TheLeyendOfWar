@@ -83,6 +83,7 @@ public class EventHandler {
     private void damagePit(int col, int row, int gameState) {
         gamePanel.gameState = gameState;
         gamePanel.ui.currentDialogue = "Caiste en un pozo \nEl pozo se lleno de tierra";
+        gamePanel.playSFX(4);
         gamePanel.player.life -= 1;
         eventRect[col][row].eventDone = true;
         canTouchEvent = false;
