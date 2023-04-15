@@ -24,9 +24,9 @@ public class ObjectHeart extends Entity{
  
         super(gamePanel);
         name = "Heart";
-        image = setup("objects/full_heart.png");
-        image2 = setup("objects/mid_heart.png");
-        image3 = setup("objects/empty_heart.png");
+        image = setup("objects/full_heart.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        image2 = setup("objects/mid_heart.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        image3 = setup("objects/empty_heart.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         
        
         

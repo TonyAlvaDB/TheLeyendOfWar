@@ -27,6 +27,7 @@ public class Entity {
     public int worldX, worldY;
     public int speed;
     public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
+    public BufferedImage attackUp1, attackUp2, attackUp3, attackDown1, attackDown2, attackDown3, attackLeft1, attackLeft2, attackLeft3, attackRight1, attackRight2, attackRight3;
     public String direction = "down";
     public int spriteCounter = 0;
     public int spriteNum = 1;
@@ -42,7 +43,12 @@ public class Entity {
     UtilityTool uTool = new UtilityTool();
     public int maxLife;
     public int life;
+    public boolean invincible = false;
+    public int invincibleCounter =0;
+    public int type;
+    boolean attacking = false;
 
+    
     public Entity(GamePanel gamePanel){
         this.gamePanel = gamePanel;
     }
@@ -82,7 +88,14 @@ public class Entity {
         gamePanel.cChecker.checkObject(this, false);
         gamePanel.cChecker.checkEntity(this, gamePanel.npc);
         gamePanel.cChecker.checkEntity(this, gamePanel.monster);
-        gamePanel.cChecker.checkPlayer(this);
+        boolean contactPlayer = gamePanel.cChecker.checkPlayer(this);
+        
+        if(this.type == 2 && contactPlayer == true){
+            if(gamePanel.player.invincible == false){
+                gamePanel.player.life--;
+                gamePanel.player.invincible = true;
+            }
+        }
         
         if (collisionOn == false) {
             switch (direction) {
@@ -103,7 +116,7 @@ public class Entity {
             }
 
             spriteCounter++;
-            if (spriteCounter == 50) {
+            if (spriteCounter == 30) {
                 spriteNum++;
                 if (spriteNum > 4) {
                     spriteNum = 1;
@@ -113,12 +126,12 @@ public class Entity {
         
     }
     
-    public BufferedImage setup(String imageName){
+    public BufferedImage setup(String imageName, int width, int height){
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
         try {
             image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(imageName));
-            image = uTool.scaleImage(image, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+            image = uTool.scaleImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }

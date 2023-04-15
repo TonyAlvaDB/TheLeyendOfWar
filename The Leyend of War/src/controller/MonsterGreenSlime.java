@@ -19,7 +19,7 @@ public class MonsterGreenSlime extends Entity{
 
     public MonsterGreenSlime(GamePanel gamePanel) {
         super(gamePanel);
-        
+        type = 2;
         name = "YellowSlime";
         speed = 1;
         maxLife = 4;
@@ -35,23 +35,23 @@ public class MonsterGreenSlime extends Entity{
     }
     
     public void getImage(){
-        up1 = setup("monster/slime_1.png");
-        up2 = setup("monster/slime_2.png");
-        up3 = setup("monster/slime_3.png");
-        down1 = setup("monster/slime_1.png");
-        down2 = setup("monster/slime_2.png");
-        down3 = setup("monster/slime_3.png");
-        left1 = setup("monster/slime_1.png");
-        left2 = setup("monster/slime_2.png");
-        left3 = setup("monster/slime_3.png");
-        right1 = setup("monster/slime_1.png");
-        right2 = setup("monster/slime_2.png");
-        right3 = setup("monster/slime_3.png");
+        up1 = setup("monster/slime_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        up2 = setup("monster/slime_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        up3 = setup("monster/slime_3.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        down1 = setup("monster/slime_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        down2 = setup("monster/slime_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        down3 = setup("monster/slime_3.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        left1 = setup("monster/slime_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        left2 = setup("monster/slime_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        left3 = setup("monster/slime_3.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        right1 = setup("monster/slime_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        right2 = setup("monster/slime_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        right3 = setup("monster/slime_3.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
     }
     public void setAction(){
         actionLockCounter++;
         
-        if(actionLockCounter == 400){
+        if(actionLockCounter == 100){
             Random random = new Random();
             int i = random.nextInt(100)+1;
             if(i <= 25){

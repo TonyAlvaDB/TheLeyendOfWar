@@ -22,7 +22,7 @@ public class ObjectChest extends Entity{
         super(gamePanel);
 
         name = "Chest";
-        down1 = setup("objects/chest_2.png");
+        down1 = setup("objects/chest_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
     }
         
 }

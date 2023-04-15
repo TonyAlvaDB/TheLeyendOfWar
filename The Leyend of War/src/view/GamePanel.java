@@ -47,8 +47,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     
     
-    final int FPS = 120;
-    final int UPS = 200;
+    final int FPS = 60;
+    final int UPS = 60;
 
     
     public TileManager tileM = new TileManager(this);
@@ -152,9 +152,7 @@ public class GamePanel extends JPanel implements Runnable{
                 entityList.get(i).draw(g2);
             }
             
-            for (int i = 0; i < entityList.size(); i++) {
-                entityList.remove(i);
-            }
+            entityList.clear();
             
             
             ui.draw(g2);

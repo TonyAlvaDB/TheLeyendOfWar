@@ -23,7 +23,7 @@ public class ObjectKey extends Entity {
         super(gamePanel);
         name = "Key";
         
-        down1 = setup("objects/key_1.png");
+        down1 = setup("objects/key_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         
     }
 }

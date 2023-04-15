@@ -46,8 +46,7 @@ public class KeyHandler implements KeyListener{
                 rightPressed = true;
             }
             if(code==KeyEvent.VK_P){
-                gamePanel.gameState = gamePanel.PAUSE_STATE;
-                
+                gamePanel.gameState = gamePanel.PAUSE_STATE; 
             }        
             if(code == KeyEvent.VK_ENTER){
                 enterPressed = true;
