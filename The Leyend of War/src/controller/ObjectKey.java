@@ -16,21 +16,14 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
-public class ObjectKey extends SuperObject {
+public class ObjectKey extends Entity {
     
-    
-    GamePanel gamePanel;
+
     public ObjectKey(GamePanel gamePanel){
-        this.gamePanel = gamePanel;
+        super(gamePanel);
         name = "Key";
         
-        try {
-            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("objects/key_1.png"));
-            uTool.scaleImage(image, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        collision = true;
+        down1 = setup("objects/key_1.png");
         
     }
 }

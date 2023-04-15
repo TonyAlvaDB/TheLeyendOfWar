@@ -21,7 +21,7 @@ public class AssetSetter {
         this.gamePanel = gamePanel;
     }
     public void setObject(){
-
+        
     
     }
     

@@ -16,25 +16,19 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
-public class ObjectHeart extends SuperObject{
+public class ObjectHeart extends Entity{
     
-    GamePanel gamePanel;
+
     
     public ObjectHeart(GamePanel gamePanel){
-        this.gamePanel = gamePanel;
+ 
+        super(gamePanel);
         name = "Heart";
+        image = setup("objects/full_heart.png");
+        image2 = setup("objects/mid_heart.png");
+        image3 = setup("objects/empty_heart.png");
         
-        try {
-            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("objects/full_heart.png"));
-            image2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("objects/mid_heart.png"));
-            image3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("objects/empty_heart.png"));
-            image = uTool.scaleImage(image, gamePanel.TILE_SIZE-5, gamePanel.TILE_SIZE-5);
-            image2 = uTool.scaleImage(image2, gamePanel.TILE_SIZE-5, gamePanel.TILE_SIZE-5);
-            image3 = uTool.scaleImage(image3, gamePanel.TILE_SIZE-5, gamePanel.TILE_SIZE-5);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        collision = true;
+       
         
     }
 }

@@ -16,19 +16,13 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
-public class ObjectChest extends SuperObject{
-    GamePanel gamePanel;
+public class ObjectChest extends Entity{
+
     public ObjectChest(GamePanel gamePanel){
-        this.gamePanel = gamePanel;
+        super(gamePanel);
+
         name = "Chest";
-        
-        try {
-            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("objects/chest_2.png"));
-            uTool.scaleImage(image, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        collision = true;
-        
+        down1 = setup("objects/chest_2.png");
     }
+        
 }
