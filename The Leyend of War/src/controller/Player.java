@@ -4,7 +4,8 @@
  */
 package controller;
 
-import java.awt.Graphics;
+
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import view.GamePanel;
@@ -73,29 +74,32 @@ public class Player extends Entity {
         right1 = setup("player/soldier_right_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         right2 = setup("player/soldier_right_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         right3 = setup("player/soldier_right_3.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        
     }
 
     public void getPlayerAttackImage() {
 
-        attackUp1 = setup("player/attack_up_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
-        attackUp2 = setup("player/attack_up_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
-        attackUp3 = setup("player/attack_up_3.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
-        attackDown1 = setup("player/attack_down_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
-        attackDown2 = setup("player/attack_down_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
-        attackDown3 = setup("player/attack_down_3.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
-        attackLeft1 = setup("player/attack_left_1.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
-        attackLeft2 = setup("player/attack_left_2.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
-        attackLeft3 = setup("player/attack_left_3.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
-        attackRight1 = setup("player/attack_right_1.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
-        attackRight2 = setup("player/attack_right_2.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
-        attackRight3 = setup("player/attack_right_3.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
+        attackUp1 = setup("attack/attack_up_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
+        attackUp2 = setup("attack/attack_up_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
+        attackUp3 = setup("attack/attack_up_3.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
+        attackDown1 = setup("attack/attack_down_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
+        attackDown2 = setup("attack/attack_down_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
+        attackDown3 = setup("attack/attack_down_3.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
+        attackLeft1 = setup("attack/attack_left_1.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
+        attackLeft2 = setup("attack/attack_left_2.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
+        attackLeft3 = setup("attack/attack_left_3.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
+        attackRight1 = setup("attack/attack_right_1.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
+        attackRight2 = setup("attack/attack_right_2.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
+        attackRight3 = setup("attack/attack_right_3.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
 
     }
-
+    
     public void update() {
         if (attacking == true) {
             attacking();
-        } else if (keyH.upPressed == true
+        } 
+
+        else if (keyH.upPressed == true
                 || keyH.downPressed == true
                 || keyH.leftPressed == true
                 || keyH.rightPressed == true
@@ -146,8 +150,7 @@ public class Player extends Entity {
             }
             
             gamePanel.keyH.enterPressed = false;
-            gamePanel.keyH.spacePressed = false;
-            
+
             spriteCounter++;
             if (spriteCounter == 15) {
                 spriteNum++;
@@ -181,31 +184,18 @@ public class Player extends Entity {
                 gamePanel.gameState = gamePanel.DIALOGUE_STATE;
                 gamePanel.npc[i].speak();
             } else {
-                if (gamePanel.keyH.spacePressed == true) {
+                if (gamePanel.keyH.enterPressed == true) {
                     attacking = true;
                 }
             }
         }
     }
 
-    public void draw(Graphics g2) {
+    @Override
+     public void draw(Graphics2D g2) {
         BufferedImage image = null;
         switch (direction) {
             case "up":
-                if (attacking == false) {
-                    if (spriteNum == 1) {
-                        image = up1;
-                    }
-                    if (spriteNum == 2) {
-                        image = up2;
-                    }
-                    if (spriteNum == 3) {
-                        image = up3;
-                    }
-                    if (spriteNum == 4) {
-                        image = up2;
-                    }
-                }
                 if (attacking == true) {
                     if (spriteNum == 1) {
                         image = attackUp1;
@@ -220,22 +210,24 @@ public class Player extends Entity {
                         image = attackUp3;
                     }
                 }
-                break;
-            case "down":
+                
                 if (attacking == false) {
                     if (spriteNum == 1) {
-                        image = down1;
+                        image = up1;
                     }
                     if (spriteNum == 2) {
-                        image = down2;
+                        image = up2;
                     }
                     if (spriteNum == 3) {
-                        image = down3;
+                        image = up3;
                     }
                     if (spriteNum == 4) {
-                        image = down2;
+                        image = up2;
                     }
                 }
+                
+                break;
+            case "down":
                 if (attacking == true) {
                     if (spriteNum == 1) {
                         image = attackDown1;
@@ -250,22 +242,23 @@ public class Player extends Entity {
                         image = attackDown3;
                     }
                 }
-                break;
-            case "left":
                 if (attacking == false) {
                     if (spriteNum == 1) {
-                        image = left1;
+                        image = down1;
                     }
                     if (spriteNum == 2) {
-                        image = left2;
+                        image = down2;
                     }
                     if (spriteNum == 3) {
-                        image = left3;
+                        image = down3;
                     }
                     if (spriteNum == 4) {
-                        image = left2;
+                        image = down2;
                     }
                 }
+                
+                break;
+            case "left":
                 if (attacking == true) {
                     if (spriteNum == 1) {
                         image = attackLeft1;
@@ -280,22 +273,23 @@ public class Player extends Entity {
                         image = attackLeft3;
                     }
                 }
-                break;
-            case "right":
                 if (attacking == false) {
                     if (spriteNum == 1) {
-                        image = right1;
+                        image = left1;
                     }
                     if (spriteNum == 2) {
-                        image = right2;
+                        image = left2;
                     }
                     if (spriteNum == 3) {
-                        image = right3;
+                        image = left3;
                     }
                     if (spriteNum == 4) {
-                        image = right2;
+                        image = left2;
                     }
                 }
+
+                break;
+            case "right":
 
                 if (attacking == true) {
                     if (spriteNum == 1) {
@@ -311,6 +305,21 @@ public class Player extends Entity {
                         image = attackRight3;
                     }
                 }
+                
+                if (attacking == false) {
+                    if (spriteNum == 1) {
+                        image = right1;
+                    }
+                    if (spriteNum == 2) {
+                        image = right2;
+                    }
+                    if (spriteNum == 3) {
+                        image = right3;
+                    }
+                    if (spriteNum == 4) {
+                        image = right2;
+                    }
+                }           
                 break;
 
         }
@@ -332,13 +341,16 @@ public class Player extends Entity {
 
     private void attacking() {
         spriteCounter++;
-        if(spriteCounter <=5){
+        if(spriteCounter <=10){
             spriteNum = 1;
         }
-        if (spriteCounter > 5 && spriteCounter <=25){
+        if (spriteCounter > 10 && spriteCounter <=20){
             spriteNum = 2;
         }
-        if(spriteCounter > 25){
+        if (spriteCounter > 20 && spriteCounter <=30){
+            spriteNum = 3;
+        }
+        if(spriteCounter > 30){
             spriteNum = 1;
             spriteCounter = 0;
             attacking=false;

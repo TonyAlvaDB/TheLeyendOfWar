@@ -19,7 +19,7 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
-public class Entity {
+public class  Entity {
 
     GamePanel gamePanel;
     
@@ -82,7 +82,6 @@ public class Entity {
 
     public void update(){
         setAction();
-        
         collisionOn = false;
         gamePanel.cChecker.checkTile(this);
         gamePanel.cChecker.checkObject(this, false);
@@ -129,6 +128,7 @@ public class Entity {
     public BufferedImage setup(String imageName, int width, int height){
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
+        System.out.println(imageName);
         try {
             image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(imageName));
             image = uTool.scaleImage(image, width, height);
@@ -137,6 +137,7 @@ public class Entity {
         }
         return image;
     } 
+    
     public void draw(Graphics2D g2){
         BufferedImage image = null;
         int screenX =  worldX - gamePanel.player.worldX + gamePanel.player.SCREEN_X;
