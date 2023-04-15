@@ -28,8 +28,11 @@ public class AssetSetter {
     public void setNpc(){
         gamePanel.npc[0] = new NpcMage(gamePanel);
         gamePanel.npc[0].worldX = gamePanel.TILE_SIZE*21;
-        gamePanel.npc[0].worldY = gamePanel.TILE_SIZE*21;
-        
-    
+        gamePanel.npc[0].worldY = gamePanel.TILE_SIZE*21;  
+    }
+    public void setMonster(){
+        gamePanel.monster[0] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[0].worldX = gamePanel.TILE_SIZE * 20;
+        gamePanel.monster[0].worldY = gamePanel.TILE_SIZE * 23;
     }
 }

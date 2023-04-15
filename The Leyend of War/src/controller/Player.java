@@ -105,6 +105,9 @@ public class Player extends Entity {
             int npcIndex = gamePanel.cChecker.checkEntity(this, gamePanel.npc);
             interactNpc(npcIndex);
             
+            int monsterIndex = gamePanel.cChecker.checkEntity(this, gamePanel.monster);
+            
+            
             gamePanel.eHander.checkEvent();
             
             gamePanel.keyH.enterPressed = false;
