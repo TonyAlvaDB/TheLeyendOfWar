@@ -14,16 +14,15 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
-public class ObjectShield extends Entity{
+public class ObjectBetterShield extends Entity{
 
-    public ObjectShield(GamePanel gamePanel) {
+    public ObjectBetterShield(GamePanel gamePanel) {
         super(gamePanel);
         type = TYPE_SHIELD;
-        name = "Shield";
-        down1 = setup("objects/shield.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
-        defenseValue = 1;
-        description = "[" + name + "] \nEsta si se donde se hizo \npero no te dire";
+        name = "Mejor Escudo";
+        down1 = setup("objects/better_shield.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        defenseValue = 3;
+        description = "[" + name + "] \nHecho por los mismos \narcangeles";
     }
 
-    
 }

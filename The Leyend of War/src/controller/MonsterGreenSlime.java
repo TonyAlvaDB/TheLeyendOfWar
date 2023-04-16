@@ -19,8 +19,8 @@ public class MonsterGreenSlime extends Entity{
 
     public MonsterGreenSlime(GamePanel gamePanel) {
         super(gamePanel);
-        type = 2;
-        name = "YellowSlime";
+        type = TYPE_MONSTER;
+        name = "Slime Amarillo";
         speed = 1;
         maxLife = 8;
         life = maxLife;

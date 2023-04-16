@@ -72,8 +72,10 @@ public class Player extends Entity {
         coin = 0;
         currentWeapon = new ObjectSword(gamePanel);
         currentShield = new ObjectShield(gamePanel);
+        proyectile = new ObjectPowerBall(gamePanel);
         attack = getAttack();
         defense = getDefense();
+        
 
     }
     public int getAttack(){
@@ -184,6 +186,12 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
 
+        }
+        if(gamePanel.keyH.shotKeyPressed == true && proyectile.alive == false){
+            proyectile.set(worldX, worldY, direction, true, this);
+            
+            gamePanel.proyectileList.add(proyectile);
+            //gamePanel.playSFX(3);
         }
 
         if (invincible == true) {
@@ -375,7 +383,7 @@ public class Player extends Entity {
 
     private void contactMonster(int i) {
         if (i != 999) {
-            if (invincible == false) {
+            if (invincible == false && gamePanel.monster[i].dying == false) {
                 gamePanel.playSFX(4);
                 int damage = gamePanel.monster[i].attack - defense;
                 if(damage < 0){
@@ -477,6 +485,25 @@ public class Player extends Entity {
             gamePanel.playSFX(7);
             gamePanel.gameState = gamePanel.DIALOGUE_STATE;
             gamePanel.ui.currentDialogue = "Ahora eres nivel " + level + " ahora!";
+        }
+    }
+    public void selectItem(){
+        int itemIndex = gamePanel.ui.getItemIndexOnSlot();
+        
+        if(itemIndex < inventory.size()){
+            Entity selectedItem = inventory.get(itemIndex);
+            if(selectedItem.type == TYPE_SWORD || selectedItem.type == TYPE_BETTER_SWORD){
+                currentWeapon = selectedItem;
+                attack = getAttack();
+            }
+            if(selectedItem.type == TYPE_SHIELD){
+                currentShield = selectedItem;
+                defense = getDefense();
+            }
+            if(selectedItem.type ==CONSUMABLE){
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+            }
         }
     }
     public void setItems(){

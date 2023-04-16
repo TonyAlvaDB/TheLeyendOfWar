@@ -18,6 +18,7 @@ public class ObjectBetterSword extends Entity{
 
     public ObjectBetterSword(GamePanel gamePanel) {
         super(gamePanel);
+        type = TYPE_SWORD;
         name = "Espadota";
         down1 = setup("objects/better_sword.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         attackValue = 3;

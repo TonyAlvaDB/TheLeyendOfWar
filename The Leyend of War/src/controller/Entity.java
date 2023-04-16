@@ -70,17 +70,27 @@ public class  Entity {
     public String description = "";
     
     public int type;
-//    public final int TYPE_PLAYER = 0;
-//    public final int TYPE_NPC = 1;
-//    public final int TYPE_MONSTER = 2;
-//    public final int TYPE_SWORD = 3;
-//    public final int TYPE_BETTER_SWORD = 4;
-//    public final int TYPE_PLAYER = 0;
+    public final int TYPE_PLAYER = 0;
+    public final int TYPE_NPC = 1;
+    public final int TYPE_MONSTER = 2;
+    public final int TYPE_SWORD = 3;
+    public final int TYPE_BETTER_SWORD = 4;
+    public final int TYPE_SHIELD = 5;
+    public final int CONSUMABLE = 6;
+
+    public int maxMana;
+    public int mana;
+    public ObjectProyectile proyectile;
+    public int useCost;
+    
+    
+    
     
             
     public Entity(GamePanel gamePanel){
         this.gamePanel = gamePanel;
     }
+    public void use(Entity entity){}
 
     public void setAction(){
     
@@ -119,7 +129,7 @@ public class  Entity {
         gamePanel.cChecker.checkEntity(this, gamePanel.monster);
         boolean contactPlayer = gamePanel.cChecker.checkPlayer(this);
         
-        if(this.type == 2 && contactPlayer == true){
+        if(this.type == TYPE_MONSTER && contactPlayer == true){
             if(gamePanel.player.invincible == false){
                 gamePanel.playSFX(4);
                 int damage = attack - gamePanel.player.defense;
@@ -310,7 +320,6 @@ public class  Entity {
             changeAlpha(g2, 1f);
         }
         if(dyingCounter > i*8){
-            dying = false;
             alive = false;
         }
     }

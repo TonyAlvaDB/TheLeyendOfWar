@@ -25,7 +25,7 @@ public class Sound {
         soundURL[0] = getClass().getResource("/sound/boss.wav");
         soundURL[1] = getClass().getResource("/sound/confurtatis.wav");
         soundURL[2] = getClass().getResource("/sound/retro_ambience_acute_01.wav");
-        soundURL[3] = getClass().getResource("/sound/damage_to_slime.wav");
+        soundURL[3] = getClass().getResource("/sound/proyectile.wav");
         soundURL[4] = getClass().getResource("/sound/damage_to_human.wav");
         soundURL[5] = getClass().getResource("/sound/sowrd_swing.wav");
         soundURL[6] = getClass().getResource("/sound/retro_event_acute_08.wav");

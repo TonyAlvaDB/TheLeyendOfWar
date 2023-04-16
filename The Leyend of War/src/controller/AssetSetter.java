@@ -33,9 +33,17 @@ public class AssetSetter {
         gamePanel.obj[2].worldX = gamePanel.TILE_SIZE*43;
         gamePanel.obj[2].worldY = gamePanel.TILE_SIZE*21;
 
-        gamePanel.obj[2] = new ObjectBetterSword(gamePanel);
-        gamePanel.obj[2].worldX = gamePanel.TILE_SIZE*22;
-        gamePanel.obj[2].worldY = gamePanel.TILE_SIZE*34;
+        gamePanel.obj[3] = new ObjectBetterSword(gamePanel);
+        gamePanel.obj[3].worldX = gamePanel.TILE_SIZE*22;
+        gamePanel.obj[3].worldY = gamePanel.TILE_SIZE*34;
+
+        gamePanel.obj[4] = new ObjectBetterShield(gamePanel);
+        gamePanel.obj[4].worldX = gamePanel.TILE_SIZE*22;
+        gamePanel.obj[4].worldY = gamePanel.TILE_SIZE*35;
+     
+        gamePanel.obj[5] = new ObjectRedPotion(gamePanel);
+        gamePanel.obj[5].worldX = gamePanel.TILE_SIZE*20;
+        gamePanel.obj[5].worldY = gamePanel.TILE_SIZE*35;
     
     }
     

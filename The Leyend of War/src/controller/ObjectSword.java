@@ -18,6 +18,7 @@ public class ObjectSword extends Entity{
     
     public ObjectSword(GamePanel gamePanel) {
         super(gamePanel);
+        type = TYPE_SWORD;
         name = "Sword";
         down1 = setup("objects/sword.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         attackValue = 1;
