@@ -70,6 +70,8 @@ public class Player extends Entity {
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
+        maxMana = 4;
+        mana = maxMana;
         currentWeapon = new ObjectSword(gamePanel);
         currentShield = new ObjectShield(gamePanel);
         proyectile = new ObjectPowerBall(gamePanel);
@@ -191,7 +193,7 @@ public class Player extends Entity {
             proyectile.set(worldX, worldY, direction, true, this);
             
             gamePanel.proyectileList.add(proyectile);
-            //gamePanel.playSFX(3);
+            gamePanel.playSFX(3);
         }
 
         if (invincible == true) {
@@ -433,7 +435,7 @@ public class Player extends Entity {
             solidArea.width = solidAreaWidth;
             solidArea.height = solidAreaHeight;
             
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, attack);
             
             
         }
@@ -447,10 +449,10 @@ public class Player extends Entity {
         }
     }
 
-    private void damageMonster(int i) {
+    void damageMonster(int i, int attack) {
         if(i != 999){
             if(gamePanel.monster[i].invincible == false){
-                gamePanel.playSFX(3);
+                gamePanel.playSFX(14);
                 int damage = attack - gamePanel.monster[i].defense;
                 if(damage < 0){
                     damage = 0;

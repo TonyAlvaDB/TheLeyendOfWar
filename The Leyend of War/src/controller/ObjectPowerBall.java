@@ -26,7 +26,7 @@ public class ObjectPowerBall extends ObjectProyectile{
         
         name = "Proyectil de energia";
         speed = 5;
-        maxLife = 20;
+        maxLife = 80;
         life = maxLife;
         attack = 2;
         useCost = 1;
@@ -35,7 +35,16 @@ public class ObjectPowerBall extends ObjectProyectile{
     }
 
     private void getImage() {
-        down1 = setup("objects/power_ball.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        
+        up1 = setup("objects/power_ball_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        up2 = setup("objects/power_ball_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        down1 = setup("objects/power_ball_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        down2 = setup("objects/power_ball_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        left1 = setup("objects/power_ball_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        left2 = setup("objects/power_ball_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        right1 = setup("objects/power_ball_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        right2 = setup("objects/power_ball_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        
     }
 
 }

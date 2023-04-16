@@ -27,7 +27,7 @@ public class MonsterGreenSlime extends Entity{
         attack = 5;
         defense = 0;
         exp = 2;
-        
+        proyectile = new ObjectProyectile(gamePanel);
         solidArea.x = 3;
         solidArea.y = 18;
         solidArea.width = 42;
@@ -70,6 +70,14 @@ public class MonsterGreenSlime extends Entity{
                 direction = "right";
             }
             actionLockCounter = 0;
+            
+            
+        }
+        int i = new Random().nextInt(100)+1;
+        if(i > 80 & proyectile.alive == false){
+            proyectile.set(worldX, worldY, direction, true, this);
+            gamePanel.proyectileList.add(proyectile);
+            
         }
                 
     }

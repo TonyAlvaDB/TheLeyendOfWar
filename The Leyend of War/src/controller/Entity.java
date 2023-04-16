@@ -130,15 +130,7 @@ public class  Entity {
         boolean contactPlayer = gamePanel.cChecker.checkPlayer(this);
         
         if(this.type == TYPE_MONSTER && contactPlayer == true){
-            if(gamePanel.player.invincible == false){
-                gamePanel.playSFX(4);
-                int damage = attack - gamePanel.player.defense;
-                if(damage < 0){
-                    damage = 0;
-                }
-                gamePanel.player.life-= damage;
-                gamePanel.player.invincible = true;
-            }
+            damagePlayer(attack);
         }
         
         if (collisionOn == false) {
@@ -176,6 +168,17 @@ public class  Entity {
             }
         }
         
+    }
+    public void damagePlayer(int attack){
+        if(gamePanel.player.invincible == false){
+                gamePanel.playSFX(4);
+                int damage = attack - gamePanel.player.defense;
+                if(damage < 0){
+                    damage = 0;
+                }
+                gamePanel.player.life-= damage;
+                gamePanel.player.invincible = true;
+            }
     }
     
     public BufferedImage setup(String imageName, int width, int height){

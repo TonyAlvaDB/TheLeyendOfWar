@@ -26,7 +26,7 @@ public class UI {
     GamePanel gamePanel;
     Font arial_40, arial_80B;
     Graphics2D g2;
-    BufferedImage full_heart, mid_heart, empty_heart;
+    BufferedImage full_heart, mid_heart, empty_heart, crystal_full, crystal_blank;
     public boolean messageOn = false;
     ArrayList<String>message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
@@ -45,6 +45,10 @@ public class UI {
         full_heart = heart.image;
         mid_heart = heart.image2;
         empty_heart = heart.image3;
+        
+        Entity crystal = new ObjectMana(gamePanel);
+        crystal_full = crystal.image;
+        crystal_blank = crystal.image2;
     }
 
     public void addMessage(String text){
@@ -163,6 +167,25 @@ public class UI {
             x+= gamePanel.TILE_SIZE;
         }
         
+        x = gamePanel.TILE_SIZE / 2;
+        y = gamePanel.TILE_SIZE / 2;
+        i = 0;
+        while (i < gamePanel.player.maxMana){
+            g2.drawImage(crystal_blank, x, y+50, null);
+            i++;
+            x += 35;
+            
+        }
+        
+        x = gamePanel.TILE_SIZE / 2;
+        y = gamePanel.TILE_SIZE / 2;
+        i = 0;
+        
+        while (i < gamePanel.player.mana){
+            g2.drawImage(crystal_full, x, y+50, null);
+            i++;
+            x += 35;
+        }
         
     }
 
