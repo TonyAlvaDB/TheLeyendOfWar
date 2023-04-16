@@ -85,4 +85,19 @@ public class MonsterGreenSlime extends Entity{
         actionLockCounter = 0;
         direction = gamePanel.player.direction;
     }
+
+    public void checkDrop(){
+        
+        int i = new Random().nextInt(100)+1;
+        
+        if(i < 50){
+            dropItem(new ObjectCoin(gamePanel));
+        }
+        if(i >= 50 && i < 75){
+            dropItem(new ObjectHeart(gamePanel));
+        }
+        if(i >= 75 && i < 100){
+            dropItem(new ObjectMana(gamePanel));
+        }
+    }
 }

@@ -16,12 +16,13 @@ import view.GamePanel;
  */
 public class ObjectRedPotion extends Entity{
     GamePanel gamePanel;
-    int value = 5;
+
     
     public ObjectRedPotion(GamePanel gamePanel) {
         super(gamePanel);
         this.gamePanel = gamePanel;
         type = CONSUMABLE;
+        value = 5;
         name = "Pocion Roja";
         down1= setup("objects/red_potion.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         description = "[Pocion Roja] \nte cura por " + value + ".";
@@ -30,9 +31,6 @@ public class ObjectRedPotion extends Entity{
         gamePanel.gameState = gamePanel.DIALOGUE_STATE;
         gamePanel.ui.currentDialogue = "Bebiste la " + name + "! \nte recuperaste por " + value +".";
         entity.life += value;
-        if (gamePanel.player.life > gamePanel.player.maxLife){
-            gamePanel.player.life = gamePanel.player.maxLife;
-        }
         gamePanel.playSFX(9);
     }
 

@@ -128,8 +128,11 @@ public class KeyHandler implements KeyListener{
         
     }
     public void titleState(int code){
-        if(code==KeyEvent.VK_ENTER)
+        if(code==KeyEvent.VK_ENTER){
             gamePanel.gameState = gamePanel.PLAY_STATE;
+            gamePanel.stopMusic();
+            gamePanel.playMusic(2);
+        }
     }
     
     public void keyReleased(KeyEvent e) {

@@ -207,6 +207,8 @@ public class UI {
         textY += lineHeight;
         g2.drawString("Vida", textX, textY);
         textY += lineHeight;
+        g2.drawString("Mana", textX, textY);
+        textY += lineHeight;
         g2.drawString("Fortaleza", textX, textY);
         textY += lineHeight;
         g2.drawString("Temple", textX, textY);
@@ -239,6 +241,10 @@ public class UI {
         textX = getXForAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
+        value = String.valueOf(gamePanel.player.mana + "/" + gamePanel.player.maxMana);
+        textX = getXForAlignToRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
         value = String.valueOf(gamePanel.player.strength);
         textX = getXForAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
@@ -267,9 +273,9 @@ public class UI {
         textX = getXForAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
-        g2.drawImage(gamePanel.player.currentWeapon.down1, tailX-gamePanel.TILE_SIZE, textY-14, null);
+        g2.drawImage(gamePanel.player.currentWeapon.down1, tailX-gamePanel.TILE_SIZE, textY-25, null);
         textY += 48;
-        g2.drawImage(gamePanel.player.currentShield.down1, tailX-gamePanel.TILE_SIZE, textY-14, null);
+        g2.drawImage(gamePanel.player.currentShield.down1, tailX-gamePanel.TILE_SIZE, textY-25, null);
 
     }
     

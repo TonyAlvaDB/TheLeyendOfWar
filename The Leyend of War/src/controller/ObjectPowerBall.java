@@ -46,5 +46,19 @@ public class ObjectPowerBall extends ObjectProyectile{
         right2 = setup("objects/power_ball_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         
     }
+    
+    public boolean haveResource(Entity user){
+        boolean haveResource = false;
+        if(user.mana >= useCost){
+            haveResource = true;
+        }
+        return haveResource;
+        
+        
+    }
+    
+    public void subtractResource(Entity user){
+        user.mana -= useCost;
+    }
 
 }

@@ -77,12 +77,13 @@ public class  Entity {
     public final int TYPE_BETTER_SWORD = 4;
     public final int TYPE_SHIELD = 5;
     public final int CONSUMABLE = 6;
+    public final int PICK = 7;
 
     public int maxMana;
     public int mana;
     public ObjectProyectile proyectile;
     public int useCost;
-    
+    public int value;
     
     
     
@@ -94,6 +95,18 @@ public class  Entity {
 
     public void setAction(){
     
+    }
+    public void checkDrop(){}
+    public void dropItem(Entity droppedItem){
+        for (int i = 0; i < gamePanel.obj.length; i++) {
+            if (gamePanel.obj[i] == null){
+                gamePanel.obj[i] = droppedItem;
+                gamePanel.obj[i].worldX = worldX;
+                gamePanel.obj[i].worldY = worldY;
+                break;
+            }
+            
+        }
     }
     public void damageReaction(){}
     public void speak(){
@@ -289,7 +302,7 @@ public class  Entity {
             }
             if(dying == true)
                 dyingAnimation(g2);
-            g2.drawImage(image, screenX, screenY,gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
+            g2.drawImage(image, screenX, screenY, null);
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }
     }

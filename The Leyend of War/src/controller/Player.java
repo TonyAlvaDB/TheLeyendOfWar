@@ -189,8 +189,10 @@ public class Player extends Entity {
             }
 
         }
-        if(gamePanel.keyH.shotKeyPressed == true && proyectile.alive == false){
+        if(gamePanel.keyH.shotKeyPressed == true && proyectile.alive == false && proyectile.haveResource(this) == true){
             proyectile.set(worldX, worldY, direction, true, this);
+            
+            proyectile.subtractResource(this);
             
             gamePanel.proyectileList.add(proyectile);
             gamePanel.playSFX(3);
@@ -203,23 +205,38 @@ public class Player extends Entity {
                 invincibleCounter = 0;
             }
         }
+        if(life > maxLife){
+            life = maxLife;
+        }
+        if(mana > maxMana){
+            mana = maxMana;
+        }
 
     }
 
     public void pickupObject(int i) {
         if (i != 999) {
-            String text;
-            if(inventory.size()!= INVENTORY_SIZE){
-                inventory.add(gamePanel.obj[i]);
-                gamePanel.playSFX(13);
-                text = "Conseguiste una "+ gamePanel.obj[i].name + "!";
-                
+            
+            if(gamePanel.obj[i].type == PICK){
+                gamePanel.obj[i].use(this);
+                gamePanel.obj[i] = null;
             }
             else{
-                text = "No puedes llevar mas objetos";
+                String text;
+                if(inventory.size()!= INVENTORY_SIZE){
+                    inventory.add(gamePanel.obj[i]);
+                    gamePanel.playSFX(13);
+                    text = "Conseguiste una "+ gamePanel.obj[i].name + "!";
+
+                }
+                else{
+                    text = "No puedes llevar mas objetos";
+                }
+                gamePanel.ui.addMessage(text);
+                gamePanel.obj[i] = null;    
             }
-            gamePanel.ui.addMessage(text);
-            gamePanel.obj[i] = null;
+            
+            
         }
     }
 
