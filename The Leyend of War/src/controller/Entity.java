@@ -113,7 +113,11 @@ public class  Entity {
         if(this.type == 2 && contactPlayer == true){
             if(gamePanel.player.invincible == false){
                 gamePanel.playSFX(4);
-                gamePanel.player.life--;
+                int damage = attack - gamePanel.player.defense;
+                if(damage < 0){
+                    damage = 0;
+                }
+                gamePanel.player.life-= damage;
                 gamePanel.player.invincible = true;
             }
         }

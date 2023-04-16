@@ -88,7 +88,37 @@ public class KeyHandler implements KeyListener{
     }
     public void characterState (int code){
         if(code==KeyEvent.VK_C)
-        gamePanel.gameState = gamePanel.PLAY_STATE;
+            gamePanel.gameState = gamePanel.PLAY_STATE;
+        if(code==KeyEvent.VK_W){
+            if(gamePanel.ui.slotRow!=0){
+                gamePanel.ui.slotRow--;
+                gamePanel.playSFX(12);
+            }
+            
+        }
+        if(code==KeyEvent.VK_S){
+            if(gamePanel.ui.slotRow != 3){
+                gamePanel.ui.slotRow++;
+                gamePanel.playSFX(12);
+            }
+            
+        }
+        if(code==KeyEvent.VK_A){
+            if(gamePanel.ui.slotCol !=0){
+                gamePanel.ui.slotCol--;
+                gamePanel.playSFX(12);
+            }
+            
+        }
+        if(code==KeyEvent.VK_D){
+            if(gamePanel.ui.slotCol != 4){
+                gamePanel.ui.slotCol++;
+                gamePanel.playSFX(12);
+            }
+            
+        }
+        
+        
         
     }
     public void titleState(int code){

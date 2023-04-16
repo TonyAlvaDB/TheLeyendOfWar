@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import view.GamePanel;
 
@@ -27,10 +28,12 @@ public class UI {
     Graphics2D g2;
     BufferedImage full_heart, mid_heart, empty_heart;
     public boolean messageOn = false;
-    public String message = "";
-    int messageCounter = 0;
+    ArrayList<String>message = new ArrayList<>();
+    ArrayList<Integer> messageCounter = new ArrayList<>();
     public boolean gameFinished = false;
     public String currentDialogue = "";
+    public int slotCol = 0;
+    public int slotRow = 0;
 
     
     public UI(GamePanel gamePanel){
@@ -44,9 +47,9 @@ public class UI {
         empty_heart = heart.image3;
     }
 
-    public void showMessage(String text){
-        message = text;
-        messageOn = true;
+    public void addMessage(String text){
+        message.add(text);
+        messageCounter.add(0);
     }
     
     public void draw(Graphics2D g2){
@@ -61,6 +64,7 @@ public class UI {
         
         if(gamePanel.gameState == gamePanel.PLAY_STATE){
             drawPlayerLife();
+            drawMessage();
         }
         if(gamePanel.gameState == gamePanel.PAUSE_STATE){
             drawPlayerLife();
@@ -73,6 +77,7 @@ public class UI {
         }
         if(gamePanel.gameState == gamePanel.CHARACTER_STATE){
             drawCharacterScreen();
+            drawInventory();
         }
         
     }
@@ -249,6 +254,63 @@ public class UI {
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = tailX - length;
         return x;
+    }
+
+    private void drawMessage() {
+        int messageX = gamePanel.TILE_SIZE;
+        int messageY = gamePanel.TILE_SIZE * 4;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
+        for (int i = 0; i < message.size(); i++) {
+            if(message.get(i) != null){
+                g2.setColor(Color.white);
+                g2.drawString(message.get(i), messageX, messageY);
+                
+                int counter = messageCounter.get(i) + 1;
+                messageCounter.set(i, counter);
+                messageY += 50;
+                if(messageCounter.get(i) > 180){
+                    message.remove(i);
+                    messageCounter.remove(i);
+                }
+            }
+        }
+        
+    }
+
+    private void drawInventory() {
+        int frameX = gamePanel.TILE_SIZE * 9;
+        int frameY = gamePanel.TILE_SIZE;
+        int frameWidth = gamePanel.TILE_SIZE * 6;
+        int frameHeight = gamePanel.TILE_SIZE * 5;
+        
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+        final int SLOT_X_START = frameX + 20;
+        final int SLOT_Y_START = frameY + 20;
+        int slotX = SLOT_X_START;
+        int slotY = SLOT_Y_START;
+        int slotSize = gamePanel.TILE_SIZE + 3;
+        
+        for (int i = 0; i < gamePanel.player.inventory.size(); i++) {
+            g2.drawImage(gamePanel.player.inventory.get(i).down1, slotX, slotY, null);
+            slotX += slotSize;
+            if(i == 4 || i == 9 || i == 14){
+                slotX = SLOT_X_START;
+                slotY += slotSize;
+            }
+        }
+        
+        int cursorX = SLOT_X_START + (slotSize*slotCol);
+        int cursorY = SLOT_Y_START + (slotSize*slotRow);;
+        int cursorWidth = gamePanel.TILE_SIZE;
+        int cursorHeight = gamePanel.TILE_SIZE;
+        
+        g2.setColor(Color.white);
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+        
+        
+        
+        
     }
         
 }

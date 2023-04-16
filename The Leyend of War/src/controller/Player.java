@@ -9,6 +9,7 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import view.GamePanel;
 
 /**
@@ -24,6 +25,8 @@ public class Player extends Entity {
 
     public final int SCREEN_X;
     public final int SCREEN_Y;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int INVENTORY_SIZE = 20;
     
 
     public Player(GamePanel gamePanel, KeyHandler keyH) {
@@ -50,6 +53,7 @@ public class Player extends Entity {
         getPlayerAttackImage();
         getPlayerImage();
         setDefaultValues();
+        setItems();
         
 
     }
@@ -363,7 +367,11 @@ public class Player extends Entity {
         if (i != 999) {
             if (invincible == false) {
                 gamePanel.playSFX(4);
-                life -= 1;
+                int damage = gamePanel.monster[i].attack - defense;
+                if(damage < 0){
+                    damage = 0;
+                }
+                life -= damage;
                 invincible = true;
             }
 
@@ -425,16 +433,50 @@ public class Player extends Entity {
         if(i != 999){
             if(gamePanel.monster[i].invincible == false){
                 gamePanel.playSFX(3);
-                gamePanel.monster[i].life -=1;
+                int damage = attack - gamePanel.monster[i].defense;
+                if(damage < 0){
+                    damage = 0;
+                }
+                gamePanel.monster[i].life -= damage; 
+                gamePanel.ui.addMessage(damage + " de daño!");
                 gamePanel.monster[i].invincible = true;
                 gamePanel.monster[i].damageReaction();
                 
                 if(gamePanel.monster[i].life <= 0){
+                    gamePanel.playSFX(11);
                     gamePanel.monster[i].dying = true;
+                    gamePanel.ui.addMessage("Mataste al " + gamePanel.monster[i].name + "!");
+                    gamePanel.ui.addMessage("Experiencia +" + gamePanel.monster[i].exp + "!");
+                    exp += gamePanel.monster[i].exp;
+                    checkLevelUp();
                 }
                 
             }
         }
     }
 
+    private void checkLevelUp() {
+        if(exp >= nextLevelExp){
+            level++;
+            nextLevelExp = nextLevelExp * 2;
+            maxLife += 2;
+            strength ++;
+            dexterity++;
+            attack = getAttack();
+            defense = getDefense();
+            gamePanel.playSFX(7);
+            gamePanel.gameState = gamePanel.DIALOGUE_STATE;
+            gamePanel.ui.currentDialogue = "Ahora eres nivel " + level + " ahora!";
+        }
+    }
+    public void setItems(){
+        inventory.add(currentWeapon);
+        inventory.add(currentShield);
+        inventory.add(new ObjectKey(gamePanel));
+        inventory.add(new ObjectKey(gamePanel));
+        inventory.add(new ObjectKey(gamePanel));
+        inventory.add(new ObjectKey(gamePanel));
+        inventory.add(new ObjectKey(gamePanel));
+        inventory.add(new ObjectKey(gamePanel));
+    }
 }
