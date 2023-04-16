@@ -54,6 +54,9 @@ public class KeyHandler implements KeyListener{
         else if (gamePanel.gameState == gamePanel.OPTIONS_STATE){ 
             optionsState(code);
         }
+        else if (gamePanel.gameState == gamePanel.OVER_STATE){ 
+            gameOverState(code);
+        }
         
     }
 
@@ -220,6 +223,34 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_F){
             shotKeyPressed = false;
+        }
+    }
+
+    private void gameOverState(int code) {
+        if(code == KeyEvent.VK_W){
+            gamePanel.ui.commandNum--;
+            if(gamePanel.ui.commandNum <0){
+                gamePanel.ui.commandNum = 1;
+            }
+            gamePanel.playSFX(12);
+        }
+        if(code == KeyEvent.VK_S){
+            gamePanel.ui.commandNum++;
+            if(gamePanel.ui.commandNum >1){
+                gamePanel.ui.commandNum = 0;
+            }
+            gamePanel.playSFX(12);
+        }
+        
+        if(code == KeyEvent.VK_ENTER){
+            if(gamePanel.ui.commandNum == 0){
+                gamePanel.gameState = gamePanel.PLAY_STATE;
+                gamePanel.retry();
+            }else if(gamePanel.ui.commandNum == 1){
+                gamePanel.gameState = gamePanel.TITLE_STATE;
+                gamePanel.restart();
+            }
+            
         }
     }
 

@@ -80,6 +80,16 @@ public class Player extends Entity {
         
 
     }
+    public void setDefaultPositions(){
+        worldX = gamePanel.TILE_SIZE * 24;
+        worldY = gamePanel.TILE_SIZE * 25;
+        direction = "down";
+    }
+    public void restoreLifeAndMana(){
+        life = maxLife;
+        mana = maxMana;
+        invincible = false;
+    }
     public int getAttack(){
         attackArea = currentWeapon.attackArea;
         return attack = strength * currentWeapon.attackValue;
@@ -210,6 +220,9 @@ public class Player extends Entity {
         }
         if(mana > maxMana){
             mana = maxMana;
+        }
+        if(life <=0){
+            gamePanel.gameState = gamePanel.OVER_STATE;
         }
 
     }
@@ -526,6 +539,7 @@ public class Player extends Entity {
         }
     }
     public void setItems(){
+        inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new ObjectKey(gamePanel));

@@ -97,6 +97,23 @@ public class GamePanel extends JPanel implements Runnable{
         
     }
     
+    public void retry(){
+        player.setDefaultPositions();
+        player.restoreLifeAndMana();
+        aSetter.setNpc();
+        aSetter.setMonster();
+    }
+    public void restart(){
+        player.setDefaultPositions();
+        player.setDefaultValues();
+        player.restoreLifeAndMana();
+        player.setItems();
+        aSetter.setObject();
+        aSetter.setNpc();
+        aSetter.setMonster();
+        
+    }
+    
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
