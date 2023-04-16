@@ -62,8 +62,23 @@ public class Player extends Entity {
         direction = "down";
         maxLife = 6;
         life = maxLife;
-        
+        level = 1;
+        strength = 1;
+        dexterity = 1;
+        exp = 0;
+        nextLevelExp = 5;
+        coin = 0;
+        currentWeapon = new ObjectSword(gamePanel);
+        currentShield = new ObjectShield(gamePanel);
+        attack = getAttack();
+        defense = getDefense();
 
+    }
+    public int getAttack(){
+        return attack = strength * currentWeapon.attackValue;
+    }
+    public int getDefense(){
+        return defense = dexterity * currentShield.defenseValue;
     }
 
     public void getPlayerImage() {

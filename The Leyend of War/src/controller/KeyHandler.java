@@ -31,8 +31,31 @@ public class KeyHandler implements KeyListener{
 
     
     public void keyPressed(KeyEvent e) {
+        int code = e.getKeyCode();
+        
         if(gamePanel.gameState == gamePanel.PLAY_STATE){
-            int code = e.getKeyCode();
+            playState(code);
+        }
+        
+        else if(gamePanel.gameState == gamePanel.DIALOGUE_STATE){
+            dialogueState(code);
+            
+        }
+        else if(gamePanel.gameState == gamePanel.PAUSE_STATE){
+            pauseState(code);
+        }
+        else if(gamePanel.gameState == gamePanel.TITLE_STATE){
+            titleState(code);
+            
+        }
+        else if (gamePanel.gameState == gamePanel.CHARACTER_STATE){ 
+            characterState(code);
+        }
+        
+    }
+
+    public void playState (int code){
+
             if(code==KeyEvent.VK_W || code == KeyEvent.VK_UP){
                 upPressed = true;
             }
@@ -48,29 +71,30 @@ public class KeyHandler implements KeyListener{
             if(code==KeyEvent.VK_P){
                 gamePanel.gameState = gamePanel.PAUSE_STATE; 
             }        
+            if(code==KeyEvent.VK_C){
+                gamePanel.gameState = gamePanel.CHARACTER_STATE; 
+            }        
             if(code == KeyEvent.VK_ENTER){
                 enterPressed = true;
             }
-        }
-        
-        else if(gamePanel.gameState == gamePanel.DIALOGUE_STATE){
-            int code = e.getKeyCode();
-            if (code == KeyEvent.VK_ENTER)
-                gamePanel.gameState = gamePanel.PLAY_STATE;
-        }
-        else if(gamePanel.gameState == gamePanel.PAUSE_STATE){
-            int code = e.getKeyCode();
-            if(code==KeyEvent.VK_P)
-                gamePanel.gameState = gamePanel.PLAY_STATE;
-        }
-        else if(gamePanel.gameState == gamePanel.TITLE_STATE){
-            int code = e.getKeyCode();
-            if(code==KeyEvent.VK_ENTER)
-                gamePanel.gameState = gamePanel.PLAY_STATE;
-        }
+    }
+    public void pauseState (int code){
+        if(code==KeyEvent.VK_P)
+            gamePanel.gameState = gamePanel.PLAY_STATE;
+    }
+    public void dialogueState (int code){
+        if (code == KeyEvent.VK_ENTER)
+            gamePanel.gameState = gamePanel.PLAY_STATE;
+    }
+    public void characterState (int code){
+        if(code==KeyEvent.VK_C)
+        gamePanel.gameState = gamePanel.PLAY_STATE;
         
     }
-
+    public void titleState(int code){
+        if(code==KeyEvent.VK_ENTER)
+            gamePanel.gameState = gamePanel.PLAY_STATE;
+    }
     
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();

@@ -5,6 +5,8 @@
 
 package controller;
 
+import view.GamePanel;
+
 /**
  *
  * Program created by
@@ -12,6 +14,13 @@ package controller;
  * Software Engeneer Student - UIA
  *
  */
-public class ObjectSword {
-
+public class ObjectSword extends Entity{
+    
+    public ObjectSword(GamePanel gamePanel) {
+        super(gamePanel);
+        name = "Sword";
+        down1 = setup("objects/sword.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        attackValue = 1;
+    }
+    
 }

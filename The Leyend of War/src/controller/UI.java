@@ -71,6 +71,9 @@ public class UI {
             drawPlayerLife();
             drawDialogueScreen();
         }
+        if(gamePanel.gameState == gamePanel.CHARACTER_STATE){
+            drawCharacterScreen();
+        }
         
     }
     public void drawPauseScreen(){
@@ -157,5 +160,95 @@ public class UI {
         
         
     }
+
+    private void drawCharacterScreen() {
+        final int FRAME_X = gamePanel.TILE_SIZE*2;
+        final int FRAME_Y = gamePanel.TILE_SIZE;
+        final int FRAME_WIDTH = gamePanel.TILE_SIZE*5;
+        final int FRAME_HEIGHT = gamePanel.TILE_SIZE*10;
+        
+        drawSubWindow(FRAME_X, FRAME_Y, FRAME_WIDTH, FRAME_HEIGHT);
+        
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(32F));
+        
+        int textX = FRAME_X+ 20;
+        int textY = FRAME_Y + gamePanel.TILE_SIZE;
+        final int lineHeight = 35;
+        g2.drawString("Nivel", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Vida", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Fortaleza", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Temple", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Ataque", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Defensa", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Exp", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Prox Nivel", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Plata", textX, textY);
+        textY += lineHeight + 20;
+        g2.drawString("Arma", textX, textY);
+        textY += lineHeight + 15;
+        g2.drawString("Escudo", textX, textY);
+        textY += lineHeight;
+        
+        
+        int tailX = (FRAME_X + FRAME_WIDTH) - 30;
+        textY = FRAME_Y + gamePanel.TILE_SIZE;
+        
+        String value;
+        value = String.valueOf(gamePanel.player.level);
+        textX = getXForAlignToRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+        value = String.valueOf(gamePanel.player.life + "/" + gamePanel.player.maxLife);
+        textX = getXForAlignToRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+        value = String.valueOf(gamePanel.player.strength);
+        textX = getXForAlignToRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+        value = String.valueOf(gamePanel.player.dexterity);
+        textX = getXForAlignToRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+        value = String.valueOf(gamePanel.player.attack);
+        textX = getXForAlignToRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+        value = String.valueOf(gamePanel.player.defense);
+        textX = getXForAlignToRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+        value = String.valueOf(gamePanel.player.exp);
+        textX = getXForAlignToRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+        value = String.valueOf(gamePanel.player.nextLevelExp);
+        textX = getXForAlignToRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+        value = String.valueOf(gamePanel.player.coin);
+        textX = getXForAlignToRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+        g2.drawImage(gamePanel.player.currentWeapon.down1, tailX-gamePanel.TILE_SIZE, textY-14, null);
+        textY += 48;
+        g2.drawImage(gamePanel.player.currentShield.down1, tailX-gamePanel.TILE_SIZE, textY-14, null);
+
+    }
     
+    public int getXForAlignToRightText(String text, int tailX){
+        int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        int x = tailX - length;
+        return x;
+    }
+        
 }

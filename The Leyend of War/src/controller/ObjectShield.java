@@ -5,6 +5,8 @@
 
 package controller;
 
+import view.GamePanel;
+
 /**
  *
  * Program created by
@@ -12,6 +14,14 @@ package controller;
  * Software Engeneer Student - UIA
  *
  */
-public class ObjectShield {
+public class ObjectShield extends Entity{
 
+    public ObjectShield(GamePanel gamePanel) {
+        super(gamePanel);
+        name = "Shield";
+        down1 = setup("objects/shield.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        defenseValue = 1;
+    }
+
+    
 }
