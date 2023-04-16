@@ -24,7 +24,7 @@ public class NpcMage extends Entity{
         speed = 1;
         getNpcImage();
         
-        setDialogue();
+        setDialogue(0);
         
     }
     
@@ -69,12 +69,27 @@ public class NpcMage extends Entity{
         
     }
 
-    public void setDialogue(){
-        dialogues[0] = "No puedo creerlo \n... \nEres War!";
-        dialogues[1] = "El miedo se apodera del \ndesierto, como de ti al ver \nun arbol binario.";
-        dialogues[2] = "Ayudanos a salvar el desierto, \nWar.";
-        dialogues[3] = "Porfi xd.";
-        
+    //Recursividad
+    private void setDialogue(int index) {
+        if (index < dialogues.length) {
+            dialogues[index] = getDialogue(index);
+            setDialogue(index + 1);
+        }
+    }
+
+    private String getDialogue(int index) {
+        switch (index) {
+            case 0:
+                return "No puedo creerlo \n... \nEres War!";
+            case 1:
+                return "El miedo se apodera del \ndesierto, como de ti al ver \nun arbol binario.";
+            case 2:
+                return "Ayudanos a salvar el desierto, \nWar.";
+            case 3:
+                return "Porfi xd.";
+            default:
+                return null;
+        }
     }
     public void speak(){
         

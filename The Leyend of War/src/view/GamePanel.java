@@ -10,8 +10,10 @@ import controller.CollisionChecker;
 import controller.Entity;
 import controller.EventHandler;
 import controller.KeyHandler;
+import controller.OperacionesTAD;
 import controller.Player;
 import controller.Sound;
+import controller.TAD;
 import controller.TileManager;
 import controller.UI;
 import java.awt.Color;
@@ -31,16 +33,20 @@ import javax.swing.JPanel;
  *
  */
 public class GamePanel extends JPanel implements Runnable{
+    //TAD
+    private OperacionesTAD tad = new OperacionesTAD();
     
-    final int ORIGINAL_TILE_SIZE = 16;
+    public final int ORIGINAL_TILE_SIZE = 16;
     final int SCALE = 3;
     
-    public final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE;
+    //TAD
+    public final int TILE_SIZE = tad.calculo(SCALE, ORIGINAL_TILE_SIZE);
     public final int MAX_SCREEN_COL = 16;
     public final int MAX_SCREEN_ROW = 12;
     
-    public final int SCREEN_WIDTH = TILE_SIZE * MAX_SCREEN_COL;
-    public final int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREEN_ROW;
+    //TAD
+    public final int SCREEN_WIDTH = tad.calculo(TILE_SIZE, MAX_SCREEN_COL);
+    public final int SCREEN_HEIGHT = tad.calculo(TILE_SIZE, MAX_SCREEN_ROW);
     
     public final int MAX_WORLD_COL = 50;
     public final int MAX_WORLD_ROW = 50;
