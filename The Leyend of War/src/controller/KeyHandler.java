@@ -51,6 +51,9 @@ public class KeyHandler implements KeyListener{
         else if (gamePanel.gameState == gamePanel.CHARACTER_STATE){ 
             characterState(code);
         }
+        else if (gamePanel.gameState == gamePanel.OPTIONS_STATE){ 
+            optionsState(code);
+        }
         
     }
 
@@ -79,6 +82,9 @@ public class KeyHandler implements KeyListener{
             }
             if(code == KeyEvent.VK_F){
                 shotKeyPressed = true;
+            }
+            if(code == KeyEvent.VK_ESCAPE){
+                gamePanel.gameState = gamePanel.OPTIONS_STATE;
             }
     }
     public void pauseState (int code){
@@ -134,6 +140,69 @@ public class KeyHandler implements KeyListener{
             gamePanel.playMusic(2);
         }
     }
+    
+    
+    private void optionsState(int code) {        
+        if(code == KeyEvent.VK_ESCAPE){
+            gamePanel.gameState = gamePanel.PLAY_STATE;
+        }
+        if(code == KeyEvent.VK_ENTER){
+            enterPressed = true;
+        }
+        int maxCommandNum = 0;
+        switch(gamePanel.ui.subState){
+            case 0:
+              maxCommandNum = 4;
+              break;
+            case 2:
+              maxCommandNum = 1;
+              break;
+        }
+        
+        if(code == KeyEvent.VK_W){
+            gamePanel.ui.commandNum--;
+            gamePanel.playSFX(12);
+            if(gamePanel.ui.commandNum < 0){
+                gamePanel.ui.commandNum = maxCommandNum;
+            }
+        }
+        if(code == KeyEvent.VK_S){
+            gamePanel.ui.commandNum ++;
+            gamePanel.playSFX(12);
+            if(gamePanel.ui.commandNum > maxCommandNum){
+                gamePanel.ui.commandNum = 0;
+            }
+        }
+        
+        if(code == KeyEvent.VK_A){
+            if(gamePanel.ui.subState == 0){
+                if(gamePanel.ui.commandNum == 0 && gamePanel.soundMusic.volumeScale > 0){
+                    gamePanel.soundMusic.volumeScale--;
+                    gamePanel.soundMusic.checkVolume();
+                    gamePanel.playSFX(12);
+                }
+                if(gamePanel.ui.commandNum == 1 && gamePanel.soundSFX.volumeScale > 0){
+                    gamePanel.soundSFX.volumeScale--;
+                    gamePanel.playSFX(12);
+                }
+            }
+        }
+        
+        if(code == KeyEvent.VK_D){
+            if(gamePanel.ui.subState == 0){
+                if(gamePanel.ui.commandNum == 0 && gamePanel.soundMusic.volumeScale < 5){
+                    gamePanel.soundMusic.volumeScale++;
+                    gamePanel.soundMusic.checkVolume();
+                    gamePanel.playSFX(12);
+                }
+                if(gamePanel.ui.commandNum == 1 && gamePanel.soundSFX.volumeScale < 5){
+                    gamePanel.soundSFX.volumeScale++;
+                    gamePanel.playSFX(12);
+                }
+            }
+        }
+    }
+
     
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();

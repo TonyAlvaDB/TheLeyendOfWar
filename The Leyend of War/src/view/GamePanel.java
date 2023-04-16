@@ -58,8 +58,8 @@ public class GamePanel extends JPanel implements Runnable{
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
-    Sound soundMusic = new Sound();
-    Sound soundSFX = new Sound();
+    public Sound soundMusic = new Sound();
+    public Sound soundSFX = new Sound();
     public Player player = new Player(this, keyH);
     public Entity obj[] = new Entity[20];
     public Entity npc[] = new Entity[10];
@@ -74,6 +74,10 @@ public class GamePanel extends JPanel implements Runnable{
     public final int PAUSE_STATE = 2;
     public final int DIALOGUE_STATE = 3;
     public final int CHARACTER_STATE = 4;
+    public final int OPTIONS_STATE = 5;
+    public final int OVER_STATE = 6;
+    
+    
     
     
     public GamePanel(){
