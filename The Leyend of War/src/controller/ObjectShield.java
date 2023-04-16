@@ -21,6 +21,7 @@ public class ObjectShield extends Entity{
         name = "Shield";
         down1 = setup("objects/shield.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         defenseValue = 1;
+        description = "[" + name + "] \nEsta si se donde se hizo \npero no te dire";
     }
 
     

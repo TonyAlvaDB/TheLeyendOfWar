@@ -21,7 +21,21 @@ public class AssetSetter {
         this.gamePanel = gamePanel;
     }
     public void setObject(){
+        gamePanel.obj[0] = new ObjectKey(gamePanel);
+        gamePanel.obj[0].worldX = gamePanel.TILE_SIZE*3;
+        gamePanel.obj[0].worldY = gamePanel.TILE_SIZE*14;
         
+        gamePanel.obj[1] = new ObjectKey(gamePanel);
+        gamePanel.obj[1].worldX = gamePanel.TILE_SIZE*2;
+        gamePanel.obj[1].worldY = gamePanel.TILE_SIZE*30;
+     
+        gamePanel.obj[2] = new ObjectKey(gamePanel);
+        gamePanel.obj[2].worldX = gamePanel.TILE_SIZE*43;
+        gamePanel.obj[2].worldY = gamePanel.TILE_SIZE*21;
+
+        gamePanel.obj[2] = new ObjectBetterSword(gamePanel);
+        gamePanel.obj[2].worldX = gamePanel.TILE_SIZE*22;
+        gamePanel.obj[2].worldY = gamePanel.TILE_SIZE*34;
     
     }
     
@@ -54,6 +68,10 @@ public class AssetSetter {
         gamePanel.monster[5] = new MonsterGreenSlime(gamePanel);
         gamePanel.monster[5].worldX = gamePanel.TILE_SIZE * 43;
         gamePanel.monster[5].worldY = gamePanel.TILE_SIZE * 21;
+
+        gamePanel.monster[6] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[6].worldX = gamePanel.TILE_SIZE * 2;
+        gamePanel.monster[6].worldY = gamePanel.TILE_SIZE * 29;
     
     }
 }

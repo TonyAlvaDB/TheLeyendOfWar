@@ -35,6 +35,7 @@ public class Sound {
         soundURL[10] = getClass().getResource("/sound/toccata.wav");
         soundURL[11] = getClass().getResource("/sound/retro_charge_07.wav");
         soundURL[12] = getClass().getResource("/sound/items.wav");
+        soundURL[13] = getClass().getResource("/sound/pick.wav");
 
     }
     public void setFile(int i){

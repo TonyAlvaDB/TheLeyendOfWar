@@ -46,9 +46,7 @@ public class Player extends Entity {
         solidArea.width = 15;
         solidArea.height = 15;
         
-        attackArea.width = 36;
-        attackArea.height = 36;
-        
+
         
         getPlayerAttackImage();
         getPlayerImage();
@@ -79,6 +77,7 @@ public class Player extends Entity {
 
     }
     public int getAttack(){
+        attackArea = currentWeapon.attackArea;
         return attack = strength * currentWeapon.attackValue;
     }
     public int getDefense(){
@@ -199,7 +198,18 @@ public class Player extends Entity {
 
     public void pickupObject(int i) {
         if (i != 999) {
-
+            String text;
+            if(inventory.size()!= INVENTORY_SIZE){
+                inventory.add(gamePanel.obj[i]);
+                gamePanel.playSFX(13);
+                text = "Conseguiste una "+ gamePanel.obj[i].name + "!";
+                
+            }
+            else{
+                text = "No puedes llevar mas objetos";
+            }
+            gamePanel.ui.addMessage(text);
+            gamePanel.obj[i] = null;
         }
     }
 
@@ -473,10 +483,6 @@ public class Player extends Entity {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new ObjectKey(gamePanel));
-        inventory.add(new ObjectKey(gamePanel));
-        inventory.add(new ObjectKey(gamePanel));
-        inventory.add(new ObjectKey(gamePanel));
-        inventory.add(new ObjectKey(gamePanel));
-        inventory.add(new ObjectKey(gamePanel));
+   
     }
 }

@@ -21,6 +21,10 @@ public class ObjectSword extends Entity{
         name = "Sword";
         down1 = setup("objects/sword.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         attackValue = 1;
+        attackArea.width = 36; 
+        attackArea.height = 36; 
+        description = "[" + name + "] \nHecha en no se sabe";
+
     }
     
 }

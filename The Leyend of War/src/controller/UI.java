@@ -291,6 +291,13 @@ public class UI {
         int slotSize = gamePanel.TILE_SIZE + 3;
         
         for (int i = 0; i < gamePanel.player.inventory.size(); i++) {
+            
+            if(gamePanel.player.inventory.get(i) == gamePanel.player.currentWeapon ||
+                    gamePanel.player.inventory.get(i) == gamePanel.player.currentShield){
+                g2.setColor(new Color(240, 190, 90));
+                g2.fillRoundRect(slotX, slotY, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, 10, 10);
+            }
+            
             g2.drawImage(gamePanel.player.inventory.get(i).down1, slotX, slotY, null);
             slotX += slotSize;
             if(i == 4 || i == 9 || i == 14){
@@ -308,9 +315,33 @@ public class UI {
         g2.setStroke(new BasicStroke(3));
         g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
         
+        int dFrameX = frameX;
+        int dFrameY = frameY + frameHeight;
+        int dFrameWidht = frameWidth;
+        int dFrameHeight = gamePanel.TILE_SIZE*3;
+        
+        
+        int textX = dFrameX + 20;
+        int textY = dFrameY + gamePanel.TILE_SIZE;
+        g2.setFont(g2.getFont().deriveFont(20F));
+        int itemIndex = getItemIndexOnSlot();
+        if(itemIndex < gamePanel.player.inventory.size()){
+            
+            drawSubWindow(dFrameX, dFrameY, dFrameWidht, dFrameHeight);
+            
+            for(String line : gamePanel.player.inventory.get(itemIndex).description.split("\n")){
+                g2.drawString(line, textX, textY);
+                textY += 32;
+            }
+            
+        }
         
         
         
+    }
+    private int getItemIndexOnSlot(){
+        int itemIndex = slotCol + (slotRow * 5);
+        return itemIndex;
     }
         
 }

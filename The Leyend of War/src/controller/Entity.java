@@ -48,7 +48,6 @@ public class  Entity {
     public int life;
     public boolean invincible = false;
     public int invincibleCounter =0;
-    public int type;
     boolean attacking = false;
     public boolean alive = true;
     public boolean dying = false;
@@ -68,6 +67,16 @@ public class  Entity {
     
     public int attackValue;
     public int defenseValue;
+    public String description = "";
+    
+    public int type;
+//    public final int TYPE_PLAYER = 0;
+//    public final int TYPE_NPC = 1;
+//    public final int TYPE_MONSTER = 2;
+//    public final int TYPE_SWORD = 3;
+//    public final int TYPE_BETTER_SWORD = 4;
+//    public final int TYPE_PLAYER = 0;
+    
             
     public Entity(GamePanel gamePanel){
         this.gamePanel = gamePanel;

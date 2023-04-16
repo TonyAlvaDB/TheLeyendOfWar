@@ -5,8 +5,6 @@
 
 package controller;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import view.GamePanel;
 
 /**
@@ -16,14 +14,16 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
-public class ObjectKey extends Entity {
-    
+public class ObjectBetterSword extends Entity{
 
-    public ObjectKey(GamePanel gamePanel){
+    public ObjectBetterSword(GamePanel gamePanel) {
         super(gamePanel);
-        name = "Key";
-        
-        down1 = setup("objects/key_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
-        description = "[" + name + "] \nNadie sabe que abre";
+        name = "Espadota";
+        down1 = setup("objects/better_sword.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
+        attackValue = 3;
+        attackArea.width = 40;
+        attackArea.height = 40;
+        description = "[Espadota] \nEs una espadota!";
     }
+
 }
