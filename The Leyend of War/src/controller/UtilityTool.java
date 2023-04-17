@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
  *
  */
 public class UtilityTool {
+    //Utilizamos el UtilityTool para escalar las imagenes y colocarlas del tamanio deseado en la pantalla (por rendimiento)
     public BufferedImage scaleImage(BufferedImage original, int width, int hight){
         BufferedImage scaledImage = new BufferedImage(width, hight, original.getType());
         Graphics2D g2 = scaledImage.createGraphics();

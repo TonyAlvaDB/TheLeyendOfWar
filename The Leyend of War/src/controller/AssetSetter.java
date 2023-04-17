@@ -28,6 +28,8 @@ public class AssetSetter {
     public AssetSetter(GamePanel gamePanel){
         this.gamePanel = gamePanel;
     }
+    
+    //Coloca los objetos dentro del mapa
     public void setObject(){
         gamePanel.obj[0] = new ObjectCoin(gamePanel);
         gamePanel.obj[0].worldX = gamePanel.TILE_SIZE*3;
@@ -67,12 +69,13 @@ public class AssetSetter {
         
     
     }
-    
+    //Coloca los NPC en el mapa
     public void setNpc(){
         gamePanel.npc[0] = new NpcMage(gamePanel);
         gamePanel.npc[0].worldX = gamePanel.TILE_SIZE*21;
         gamePanel.npc[0].worldY = gamePanel.TILE_SIZE*21;  
     }
+    //Coloca los monstruos dentro del mapa
     public void setMonster(){
         gamePanel.monster[0] = new MonsterGreenSlime(gamePanel);
         gamePanel.monster[0].worldX = gamePanel.TILE_SIZE * 20;

@@ -30,7 +30,7 @@ public class KeyHandler implements KeyListener, GamePanelConstants{
     public void keyTyped(KeyEvent e) {
     }
 
-    
+    //Nos controla todo lo que pasa cuando se presiona una tecla
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         
@@ -60,7 +60,7 @@ public class KeyHandler implements KeyListener, GamePanelConstants{
         }
         
     }
-
+    //Nos controla todo lo que pasa cuando se presiona una tecla en el play state
     public void playState (int code){
 
             if(code==KeyEvent.VK_W || code == KeyEvent.VK_UP){
@@ -91,14 +91,17 @@ public class KeyHandler implements KeyListener, GamePanelConstants{
                 gamePanel.gameState = gamePanel.OPTIONS_STATE;
             }
     }
+    //Nos controla todo lo que pasa cuando se presiona una tecla en el pause state
     public void pauseState (int code){
         if(code==KeyEvent.VK_P)
             gamePanel.gameState = gamePanel.PLAY_STATE;
     }
+    //Nos controla todo lo que pasa cuando se presiona una tecla en el dialogue state
     public void dialogueState (int code){
         if (code == KeyEvent.VK_ENTER)
             gamePanel.gameState = gamePanel.PLAY_STATE;
     }
+    //Nos controla todo lo que pasa cuando se presiona una tecla en el character state
     public void characterState (int code){
         if(code==KeyEvent.VK_C)
             gamePanel.gameState = gamePanel.PLAY_STATE;
@@ -137,6 +140,7 @@ public class KeyHandler implements KeyListener, GamePanelConstants{
         
         
     }
+    //Nos controla todo lo que pasa cuando se presiona una tecla en el title state
     public void titleState(int code){
         if(code==KeyEvent.VK_ENTER){
             gamePanel.gameState = gamePanel.PLAY_STATE;
@@ -144,8 +148,7 @@ public class KeyHandler implements KeyListener, GamePanelConstants{
             gamePanel.playMusic(2);
         }
     }
-    
-    
+    //Nos controla todo lo que pasa cuando se presiona una tecla en el options state
     private void optionsState(int code) {        
         if(code == KeyEvent.VK_ESCAPE){
             gamePanel.gameState = gamePanel.PLAY_STATE;
@@ -206,27 +209,7 @@ public class KeyHandler implements KeyListener, GamePanelConstants{
             }
         }
     }
-
-    
-    public void keyReleased(KeyEvent e) {
-        int code = e.getKeyCode();
-        if(code==KeyEvent.VK_W || code == KeyEvent.VK_UP){
-            upPressed = false;
-        }
-        if(code==KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
-            downPressed = false;
-        }
-        if(code==KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
-            leftPressed = false;
-        }
-        if(code==KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
-            rightPressed = false;
-        }
-        if(code == KeyEvent.VK_F){
-            shotKeyPressed = false;
-        }
-    }
-
+    //Nos controla todo lo que pasa cuando se presiona una tecla en el game over state
     private void gameOverState(int code) {
         if(code == KeyEvent.VK_W){
             gamePanel.ui.commandNum--;
@@ -254,5 +237,27 @@ public class KeyHandler implements KeyListener, GamePanelConstants{
             
         }
     }
+    
+    //Nos controla lo que pasa cuando se suelta la tecla
+    public void keyReleased(KeyEvent e) {
+        int code = e.getKeyCode();
+        if(code==KeyEvent.VK_W || code == KeyEvent.VK_UP){
+            upPressed = false;
+        }
+        if(code==KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+            downPressed = false;
+        }
+        if(code==KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
+            leftPressed = false;
+        }
+        if(code==KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
+            rightPressed = false;
+        }
+        if(code == KeyEvent.VK_F){
+            shotKeyPressed = false;
+        }
+    }
+
+
 
 }

@@ -15,7 +15,7 @@ import view.GamePanel;
  *
  */
 public class Boss extends Entity{
-
+    //proximamente xd
     public Boss(GamePanel gamePanel) {
         super(gamePanel);
     }

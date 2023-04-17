@@ -21,6 +21,7 @@ public class CollisionChecker {
     public CollisionChecker(GamePanel gamePanel){
         this.gamePanel = gamePanel;
     }
+    //Este metodo checkea los tiles para ver sobre cuales podemos caminar y sobre cuales no
     public void checkTile(Entity entity){
         
         int entityLeftWorldX = entity.worldX + entity.solidArea.x;
@@ -71,7 +72,7 @@ public class CollisionChecker {
     
         }
     }
-    
+    //Checkea el hitbox de los objetos
     public int checkObject(Entity entity, boolean player){
     
         int index = 999;
@@ -116,7 +117,7 @@ public class CollisionChecker {
         
         return index;
     }
-    
+    //Checkea el hitbox de las entidades
     public int checkEntity(Entity entity, Entity[] target){
         int index = 999;
         
@@ -159,6 +160,7 @@ public class CollisionChecker {
         
         return index;
     }
+    //Checkea el hitbox de los monstruos hacia el jugador
     public boolean checkPlayer(Entity entity){
         
         boolean contactPlayer = false;

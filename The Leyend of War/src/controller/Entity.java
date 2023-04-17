@@ -13,6 +13,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import model.EntityConstants;
 import view.GamePanel;
 
 /**
@@ -22,32 +23,35 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
-public class  Entity {
+public class  Entity implements EntityConstants{
 
    public GamePanel gamePanel;
-    
 
-    public int worldX, worldY;
-    public int speed;
-    public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
-    public BufferedImage attackUp1, attackUp2, attackUp3, attackDown1, attackDown2, attackDown3, attackLeft1, attackLeft2, attackLeft3, attackRight1, attackRight2, attackRight3;
-    public String direction = "down";
-    public int spriteCounter = 0;
-    public int spriteNum = 1;
+    //Hit Box matter
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter= 0;
+    public boolean collision = false;
+    
+    //Dialogues matter
     public String dialogues[] = new String[20];
     int dialogueIndex = 0;
     public BufferedImage image, image2, image3;
     public String name;
-    public boolean collision = false;
+    
     UtilityTool uTool = new UtilityTool();
-    public int maxLife;
-    public int life;
-    public boolean invincible = false;
+
+    
+    //Player sprite drawing matter
+    public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
+    public BufferedImage attackUp1, attackUp2, attackUp3, attackDown1, attackDown2, attackDown3, attackLeft1, attackLeft2, attackLeft3, attackRight1, attackRight2, attackRight3;
+    public String direction = "down";
+    public int spriteCounter = 0;
+    public int spriteNum = 1;
+    
+    //Player and monster life
     public int invincibleCounter =0;
     boolean attacking = false;
     public boolean alive = true;
@@ -55,6 +59,9 @@ public class  Entity {
     int dyingCounter = 0;
     boolean hpBarOn = false;
     int hpBarCounter = 0;
+    
+    //Player stats
+    public int worldX, worldY;
     public int level;
     public int strength;
     public int dexterity;
@@ -63,25 +70,25 @@ public class  Entity {
     public int exp;
     public int nextLevelExp;
     public int coin;
+    public int maxMana;
+    public int mana;
+    public int maxLife;
+    public int life;
+    public int speed;
+    public boolean invincible = false;
     public Entity currentWeapon;
     public Entity currentShield;
     
+    //Weapon stats
     public int attackValue;
     public int defenseValue;
     public String description = "";
     
+    //Constants matter
     public int type;
-    public final int TYPE_PLAYER = 0;
-    public final int TYPE_NPC = 1;
-    public final int TYPE_MONSTER = 2;
-    public final int TYPE_SWORD = 3;
-    public final int TYPE_BETTER_SWORD = 4;
-    public final int TYPE_SHIELD = 5;
-    public final int CONSUMABLE = 6;
-    public final int PICK = 7;
 
-    public int maxMana;
-    public int mana;
+
+    //Proyectile matter
     public ObjectProyectile proyectile;
     public int useCost;
     public int value;
@@ -98,6 +105,7 @@ public class  Entity {
     
     }
     public void checkDrop(){}
+    //Este metodo hace que el item dropeado caiga donde muere el monstruo
     public void dropItem(Entity droppedItem){
         for (int i = 0; i < gamePanel.obj.length; i++) {
             if (gamePanel.obj[i] == null){
@@ -110,6 +118,7 @@ public class  Entity {
         }
     }
     public void damageReaction(){}
+    //Este metodo hace que cuando hablamos con un NPC nos vea
     public void speak(){
     if(dialogues[dialogueIndex] == null)
         dialogueIndex = 0;
@@ -133,7 +142,7 @@ public class  Entity {
         
         }
     }
-
+    //Update que se hace 60 veces por segundo (FPS)
     public void update(){
         setAction();
         collisionOn = false;
@@ -183,6 +192,7 @@ public class  Entity {
         }
         
     }
+    //Lo que pasa cuando se recibe un golpe de un monstruo
     public void damagePlayer(int attack){
         if(gamePanel.player.invincible == false){
                 gamePanel.playSFX(4);
@@ -194,7 +204,7 @@ public class  Entity {
                 gamePanel.player.invincible = true;
             }
     }
-    
+    //Este es el metodo que nos ayuda a meter las imagenes en variabes tipo BufferedImage
     public BufferedImage setup(String imageName, int width, int height){
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
@@ -207,7 +217,7 @@ public class  Entity {
         }
         return image;
     } 
-    
+    //Metodo que dibuja
     public void draw(Graphics2D g2){
         BufferedImage image = null;
         int screenX =  worldX - gamePanel.player.worldX + gamePanel.player.SCREEN_X;
@@ -307,7 +317,7 @@ public class  Entity {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }
     }
-
+    //Hace que el monstruo parpadee cuando muere. Tambien le implementa sonido
     private void dyingAnimation(Graphics2D g2) {
         dyingCounter++;
         int i = 5;
@@ -340,7 +350,7 @@ public class  Entity {
             alive = false;
         }
     }
-
+    //Este metodo nos cambia la opacidad de la entidad
     private void changeAlpha(Graphics2D g2, float f) {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, f));
     }

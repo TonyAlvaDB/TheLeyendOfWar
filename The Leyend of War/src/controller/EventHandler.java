@@ -5,7 +5,6 @@
 
 package controller;
 
-import java.awt.Rectangle;
 import model.GamePanelConstants;
 import view.GamePanel;
 
@@ -23,7 +22,7 @@ public class EventHandler implements GamePanelConstants{
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
     
-    
+    //Hace que puedan haber eventos a lo largo del mapa
     public EventHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         eventRect = new EventRect[gamePanel.MAX_WORLD_COL][gamePanel.MAX_WORLD_ROW];
@@ -45,7 +44,7 @@ public class EventHandler implements GamePanelConstants{
         }
         
     }
-
+    //Checkea el evento (pueden haber varios eventos)
     public void checkEvent(){
         int xDistance = Math.abs(gamePanel.player.worldX - previousEventX);
         int yDistance = Math.abs(gamePanel.player.worldY - previousEventY);
@@ -57,6 +56,7 @@ public class EventHandler implements GamePanelConstants{
             damagePit(21, 25, gamePanel.DIALOGUE_STATE);
         }
     }
+    //Si el evento se da, nos golpea
     public boolean hit(int col, int row, String reqDirection){
         boolean hit = false;
         
@@ -80,7 +80,7 @@ public class EventHandler implements GamePanelConstants{
         
         return hit;
     }
-
+    //Este es un hueco en la tierra justo al lado del spawn
     private void damagePit(int col, int row, int gameState) {
         gamePanel.gameState = gameState;
         gamePanel.ui.currentDialogue = "Caiste en un pozo \nEl pozo se lleno de tierra";

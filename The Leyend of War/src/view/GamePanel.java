@@ -47,12 +47,7 @@ public class GamePanel extends JPanel implements Runnable, GamePanelConstants{
     public final int SCREEN_WIDTH = tad.calculo(TILE_SIZE, MAX_SCREEN_COL);
     public final int SCREEN_HEIGHT = tad.calculo(TILE_SIZE, MAX_SCREEN_ROW);
     
-    public final int MAX_WORLD_COL = 50;
-    public final int MAX_WORLD_ROW = 50;
-    
-    
-    final int FPS = 60;
-    final int UPS = 60;
+
 
     
     public TileManager tileM = new TileManager(this);

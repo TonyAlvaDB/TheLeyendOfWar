@@ -60,7 +60,7 @@ public class Player extends Entity implements GamePanelConstants{
         
 
     }
-
+    //Estos son los valores por defecto, utiles para el reset o retry
     public void setDefaultValues() {
 
         worldX = gamePanel.TILE_SIZE * 24;
@@ -85,24 +85,28 @@ public class Player extends Entity implements GamePanelConstants{
         
 
     }
+    //Valores del lugar donde el jugador spawnea
     public void setDefaultPositions(){
         worldX = gamePanel.TILE_SIZE * 24;
         worldY = gamePanel.TILE_SIZE * 25;
         direction = "down";
     }
+    //Esto nos ayuda cuando tenemos que hacer respawn o retry
     public void restoreLifeAndMana(){
         life = maxLife;
         mana = maxMana;
         invincible = false;
     }
+    //Nos hace un update del ataque cuando cargamos un arma nueva
     public int getAttack(){
         attackArea = currentWeapon.attackArea;
         return attack = strength * currentWeapon.attackValue;
     }
+    //Nos hace un update del ataque cuando cargamos un arma nueva
     public int getDefense(){
         return defense = dexterity * currentShield.defenseValue;
     }
-
+    //Aqui cargamos las imagenes del jugador a una variable del tipo BufferedImage
     public void getPlayerImage() {
 
         up1 = setup("player/soldier_up_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
@@ -119,7 +123,7 @@ public class Player extends Entity implements GamePanelConstants{
         right3 = setup("player/soldier_right_3.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         
     }
-
+    //Aqui cargamos las imagenes del jugador atacando a una variable del tipo BufferedImage
     public void getPlayerAttackImage() {
 
         attackUp1 = setup("attack/attack_up_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE * 2);
@@ -136,7 +140,7 @@ public class Player extends Entity implements GamePanelConstants{
         attackRight3 = setup("attack/attack_right_3.png", gamePanel.TILE_SIZE * 2, gamePanel.TILE_SIZE);
 
     }
-    
+    //Update del personaje que se hace 60 veces cada segundo (FPS)
     public void update() {
         if (attacking == true) {
             attacking();
@@ -231,7 +235,7 @@ public class Player extends Entity implements GamePanelConstants{
         }
 
     }
-
+    //Logica para poder tomar un elemento del piso
     public void pickupObject(int i) {
         if (i != 999) {
             
@@ -257,7 +261,7 @@ public class Player extends Entity implements GamePanelConstants{
             
         }
     }
-
+    //Esto nos ayuda a interactuar con NPCs varios
     private void interactNpc(int i) {
         if (gamePanel.keyH.enterPressed == true) {
             if (i != 999) {
@@ -271,8 +275,8 @@ public class Player extends Entity implements GamePanelConstants{
             }
         }
     }
-
-     public void draw(Graphics2D g2) {
+    //Nos coloca el personaje en pantalla
+    public void draw(Graphics2D g2) {
 
         int tempScreenX = SCREEN_X;
         int tempScreenY = SCREEN_Y;
@@ -417,7 +421,7 @@ public class Player extends Entity implements GamePanelConstants{
 //        g2.setColor(Color.white);
 //        g2.fillRect(x, y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
     }
-
+    //Aqui vemos que pasa cuando se toca un monstruo
     private void contactMonster(int i) {
         if (i != 999) {
             if (invincible == false && gamePanel.monster[i].dying == false) {
@@ -432,7 +436,7 @@ public class Player extends Entity implements GamePanelConstants{
 
         }
     }
-
+    //Nos coloca en pantalla la animacion de ataque
     private void attacking() {
         spriteCounter++;
         if(spriteCounter <=10){
@@ -483,7 +487,7 @@ public class Player extends Entity implements GamePanelConstants{
             attacking=false;
         }
     }
-
+    //Esto es lo que pasa cuando le pegamos a un monstruo
     public void damageMonster(int i, int attack) {
         if(i != 999){
             if(gamePanel.monster[i].invincible == false){
@@ -509,7 +513,7 @@ public class Player extends Entity implements GamePanelConstants{
             }
         }
     }
-
+    //Aqui vemos que pasa cuando llegamos al max de experiencia requerida para subir de nivel
     private void checkLevelUp() {
         if(exp >= nextLevelExp){
             level++;
@@ -524,6 +528,7 @@ public class Player extends Entity implements GamePanelConstants{
             gamePanel.ui.currentDialogue = "Ahora eres nivel " + level + " ahora!";
         }
     }
+    //Con esto podemos seleccionar items del inventario
     public void selectItem(){
         int itemIndex = gamePanel.ui.getItemIndexOnSlot();
         
@@ -543,6 +548,7 @@ public class Player extends Entity implements GamePanelConstants{
             }
         }
     }
+    //Con esto podemos elegir los items del invetario y equiparlos
     public void setItems(){
         inventory.clear();
         inventory.add(currentWeapon);

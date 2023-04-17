@@ -43,6 +43,7 @@ public class Sound {
         soundURL[14] = getClass().getResource("/sound/monster_damage.wav");
 
     }
+    //Este metodo nos ayuda a meter los archivos .wav a variables de tipo CLIP con ayuda de un URL
     public void setFile(int i){
         try {
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
@@ -54,16 +55,19 @@ public class Sound {
         } catch (Exception e) {
         }
     }
+    //Este toca la musica
     public void play(){
         clip.start();
     }
-
+    //Este genera un loop de musica
     public void loop(){
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
+    //Este detiene la muisica
     public void stop(){
         clip.stop();
     }
+    //Con este podemos subir o bajar el volumen
     public void checkVolume(){
         switch(volumeScale){
             case 0:
