@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package controller;
+package view;
 
+import controller.Tile;
+import controller.UtilityTool;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -23,8 +25,8 @@ import view.GamePanel;
  */
 public class TileManager {
     GamePanel gamePanel;
-    Tile[] tile;
-    int mapTileNum[][];
+    public Tile[] tile;
+    public int mapTileNum[][];
     
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;

@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package controller;
+package model;
 
+import controller.Entity;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import view.GamePanel;
@@ -16,14 +17,13 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
-public class ObjectKey extends Entity {
-    
+public class ObjectChest extends Entity{
 
-    public ObjectKey(GamePanel gamePanel){
+    public ObjectChest(GamePanel gamePanel){
         super(gamePanel);
-        name = "Key";
-        
-        down1 = setup("objects/key_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
-        description = "[" + name + "] \nNadie sabe que abre";
+
+        name = "Chest";
+        down1 = setup("objects/chest_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
     }
+        
 }

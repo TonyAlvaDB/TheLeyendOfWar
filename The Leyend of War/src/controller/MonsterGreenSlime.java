@@ -5,6 +5,10 @@
 
 package controller;
 
+import model.ObjectHeart;
+import model.ObjectCoin;
+import model.ObjectMana;
+import model.ObjectProyectile;
 import java.util.Random;
 import view.GamePanel;
 

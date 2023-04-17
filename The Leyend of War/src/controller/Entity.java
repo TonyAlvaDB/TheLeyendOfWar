@@ -5,6 +5,7 @@
 
 package controller;
 
+import model.ObjectProyectile;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -23,7 +24,7 @@ import view.GamePanel;
  */
 public class  Entity {
 
-    GamePanel gamePanel;
+   public GamePanel gamePanel;
     
 
     public int worldX, worldY;

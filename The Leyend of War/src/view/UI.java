@@ -3,8 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package controller;
+package view;
 
+import controller.Entity;
+import model.ObjectHeart;
+import model.ObjectMana;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -34,7 +37,7 @@ public class UI {
     public String currentDialogue = "";
     public int slotCol = 0;
     public int slotRow = 0;
-    int subState = 0;
+    public int subState = 0;
     public int commandNum = 0;
 
     
@@ -376,7 +379,7 @@ public class UI {
         
         
     }
-    int getItemIndexOnSlot(){
+    public int getItemIndexOnSlot(){
         int itemIndex = slotCol + (slotRow * 5);
         return itemIndex;
     }

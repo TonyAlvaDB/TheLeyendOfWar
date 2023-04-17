@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package controller;
+package model;
 
+import controller.Entity;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import view.GamePanel;

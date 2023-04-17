@@ -5,6 +5,10 @@
 package controller;
 
 
+import model.ObjectPowerBall;
+import model.ObjectKey;
+import model.ObjectShield;
+import model.ObjectSword;
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -479,7 +483,7 @@ public class Player extends Entity {
         }
     }
 
-    void damageMonster(int i, int attack) {
+    public void damageMonster(int i, int attack) {
         if(i != 999){
             if(gamePanel.monster[i].invincible == false){
                 gamePanel.playSFX(14);

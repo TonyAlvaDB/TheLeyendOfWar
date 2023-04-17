@@ -14,8 +14,6 @@ import controller.OperacionesTAD;
 import controller.Player;
 import controller.Sound;
 import controller.TAD;
-import controller.TileManager;
-import controller.UI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -197,7 +195,7 @@ public class GamePanel extends JPanel implements Runnable{
             Collections.sort(entityList, new Comparator<Entity>() {
                 
                 public int compare(Entity e1, Entity e2) {
-                    int result = Integer.compare(e1.worldY, e2.worldY);
+                    int result = Integer.compare(e1.worldX, e2.worldY);
                     return result;
                 }
             });

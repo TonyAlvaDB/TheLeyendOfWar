@@ -5,6 +5,12 @@
 
 package controller;
 
+import model.ObjectHeart;
+import model.ObjectRedPotion;
+import model.ObjectCoin;
+import model.ObjectMana;
+import model.ObjectBetterSword;
+import model.ObjectBetterShield;
 import view.GamePanel;
 
 /**

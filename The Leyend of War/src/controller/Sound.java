@@ -22,8 +22,8 @@ public class Sound {
     Clip clip;
     URL soundURL[] = new URL[30];
     FloatControl fc;
-    int volumeScale = 3;
-    float volume;
+    public int volumeScale = 3;
+    public float volume;
     
     public Sound(){
         soundURL[0] = getClass().getResource("/sound/boss.wav");
