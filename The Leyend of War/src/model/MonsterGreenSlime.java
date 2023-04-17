@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package controller;
+package model;
 
+import controller.Entity;
 import model.ObjectHeart;
 import model.ObjectCoin;
 import model.ObjectMana;

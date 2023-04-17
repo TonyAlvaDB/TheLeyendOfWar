@@ -5,6 +5,8 @@
 
 package controller;
 
+import model.MonsterGreenSlime;
+import model.NpcMage;
 import model.ObjectHeart;
 import model.ObjectRedPotion;
 import model.ObjectCoin;
