@@ -6,6 +6,8 @@
 package model;
 
 import controller.Entity;
+import controller.LinkedList;
+import controller.Nodo;
 import java.util.Random;
 import view.GamePanel;
 
@@ -28,7 +30,7 @@ public class NpcMage extends Entity{
         setDialogue(0);
         
     }
-    
+    //Cargamos las imagenes en variables del tipo BufferedImage
     public void getNpcImage() {
        
         up1 = setup("npc/mage_up_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
@@ -44,29 +46,65 @@ public class NpcMage extends Entity{
         right2 = setup("npc/mage_right_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         right3 = setup("npc/mage_right_3.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
     }
-
+    //Este es un tipo de AI donde el npc tiene 25% de posibilidades de moverse para x sitio (los 4 lados)
     public void setAction(){
+        
+        //Listas y busqueda secuencial
         actionLockCounter++;
-        
-        if(actionLockCounter == 100){
-            Random random = new Random();
-            int i = random.nextInt(100)+1;
-            if(i <= 25){
-                direction = "up";
-            }
-            if(i > 25 && i <= 50){
-                direction = "down";
-            }
-            if(i > 50 && i <= 75){
-                direction = "left";
-            }
-            if(i > 75 && i <= 100){
-                direction = "right";
-            }
-            actionLockCounter = 0;
+        LinkedList linkedList = new LinkedList();
+
+        // Generar una lista aleatoria de números del 1 al 100
+        int[] numbers = new int[100];
+        for (int i = 0; i < 100; i++) {
+            numbers[i] = i + 1;
         }
+        shuffleArray(numbers);
+
+        // Agregar los nodos con los números aleatorios a la lista enlazada
+        for (int number : numbers) {
+            linkedList.addNode(number);
+        }
+
+        // Generar un número aleatorio como índice a buscar
+        Random random = new Random();
+        int randomIndex = random.nextInt(100);
+
+        // Buscar el nodo en el índice generado aleatoriamente
+        Nodo node = linkedList.getNode(randomIndex);
+
+        // Verificar si se encontró el nodo en el índice
+        if (node != null) {
+            if(actionLockCounter > 100){
+                if (node.value <= 25) {
+                    direction = "up";
+                } else if (node.value <= 50) {
+                    direction = "down";
+                } else if (node.value <= 75) {
+                    direction = "left";
+                } else {
+                    direction = "right";
+                }
+                actionLockCounter = 0;
+            }
+            // Determinar la dirección del NPC basada en el valor del nodo
+            
+            
+            
         
+        }
+    }
         
+       public static void shuffleArray(int[] array) {
+        Random random = new Random();
+        for (int i = array.length - 1; i > 0; i--) {
+            int index = random.nextInt(i + 1);
+            if (index != i) {
+                int temp = array[index];
+                array[index] = array[i];
+                array[i] = temp;
+            }
+        }
+     
         
     }
 
@@ -77,7 +115,7 @@ public class NpcMage extends Entity{
             setDialogue(index + 1);
         }
     }
-
+    //Recursividad
     private String getDialogue(int index) {
         switch (index) {
             case 0:
@@ -92,6 +130,7 @@ public class NpcMage extends Entity{
                 return null;
         }
     }
+    //Con este el NPC habla
     public void speak(){
         
         super.speak();

@@ -18,7 +18,7 @@ public class GameWindow {
     public GameWindow(){
         
     }
-    
+    //Aqui creamos la ventana donde el gamePanel estara
     public void addWindow(){
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -256,7 +256,7 @@ public class GamePanel extends JPanel implements Runnable, GamePanelConstants{
         }
         
     }
- 
+    //Ordenamiento
     public void quickSort(ArrayList<Entity> entityList, int low, int high) {
         if (low < high) {
             int pivotIndex = partition(entityList, low, high);
@@ -264,7 +264,7 @@ public class GamePanel extends JPanel implements Runnable, GamePanelConstants{
             quickSort(entityList, pivotIndex + 1, high);
         }
     }
-
+    //Ordenamiento
     public int partition(ArrayList<Entity> entityList, int low, int high) {
         int pivotValue = entityList.get(high).worldX;
         int i = low - 1;

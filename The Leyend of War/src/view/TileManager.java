@@ -27,7 +27,7 @@ public class TileManager {
     GamePanel gamePanel;
     public Tile[] tile;
     public int mapTileNum[][];
-    
+    //Este tiene que ver con colocar los tiles en pantalla. Se usa un archivo txt como base del mapa
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         tile = new Tile[100];

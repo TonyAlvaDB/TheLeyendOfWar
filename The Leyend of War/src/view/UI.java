@@ -26,6 +26,7 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
+//Este crea el UI, todo lo que tenga que ver con UI
 public class UI implements GamePanelConstants{
     GamePanel gamePanel;
     Font arial_40, arial_80B;

@@ -6,10 +6,6 @@
 package model;
 
 import controller.Entity;
-import model.ObjectHeart;
-import model.ObjectCoin;
-import model.ObjectMana;
-import model.ObjectProyectile;
 import java.util.Random;
 import view.GamePanel;
 
@@ -41,7 +37,7 @@ public class MonsterGreenSlime extends Entity{
         solidAreaDefaultY = solidArea.y;
         getImage();
     }
-    
+    //Trae la imagen del slime y la coloca dentro de variables del tipo BufferedImage
     public void getImage(){
         up1 = setup("monster/slime_1.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         up2 = setup("monster/slime_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
@@ -56,6 +52,7 @@ public class MonsterGreenSlime extends Entity{
         right2 = setup("monster/slime_2.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
         right3 = setup("monster/slime_3.png", gamePanel.TILE_SIZE, gamePanel.TILE_SIZE);
     }
+    //Lo que el slime puede hacer
     public void setAction(){
         actionLockCounter++;
         
@@ -86,11 +83,12 @@ public class MonsterGreenSlime extends Entity{
         }
                 
     }
+    //La reaccion del slime ante el danio
     public void damageReaction(){
         actionLockCounter = 0;
         direction = gamePanel.player.direction;
     }
-
+    //Esto es lo que el slime puede contener dentro de su drop.
     public void checkDrop(){
         
         int i = new Random().nextInt(100)+1;
