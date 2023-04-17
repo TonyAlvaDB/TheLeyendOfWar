@@ -15,7 +15,7 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
-public class ObjectRedPotion extends Entity{
+public class ObjectRedPotion extends Entity implements GamePanelConstants{
     GamePanel gamePanel;
 
     

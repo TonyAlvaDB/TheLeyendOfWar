@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import model.GamePanelConstants;
 import view.GamePanel;
 
 /**
@@ -25,7 +26,7 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
-public class UI {
+public class UI implements GamePanelConstants{
     GamePanel gamePanel;
     Font arial_40, arial_80B;
     Graphics2D g2;

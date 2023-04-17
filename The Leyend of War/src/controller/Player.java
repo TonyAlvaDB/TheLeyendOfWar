@@ -14,6 +14,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import model.GamePanelConstants;
 import view.GamePanel;
 
 /**
@@ -23,7 +24,7 @@ import view.GamePanel;
  * @author Anthony Alvarez Delgado Software Engeneer Student - UIA
  *
  */
-public class Player extends Entity {
+public class Player extends Entity implements GamePanelConstants{
 
     KeyHandler keyH;
 

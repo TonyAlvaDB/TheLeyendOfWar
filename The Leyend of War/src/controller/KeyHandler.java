@@ -7,6 +7,7 @@ package controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import model.GamePanelConstants;
 import view.GamePanel;
 
 /**
@@ -16,7 +17,7 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
-public class KeyHandler implements KeyListener{
+public class KeyHandler implements KeyListener, GamePanelConstants{
 
     
     GamePanel gamePanel;

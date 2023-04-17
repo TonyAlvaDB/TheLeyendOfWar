@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.JPanel;
+import model.GamePanelConstants;
 
 /**
  *
@@ -30,7 +31,7 @@ import javax.swing.JPanel;
  * Software Engeneer Student - UIA
  *
  */
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable, GamePanelConstants{
     //TAD
     private OperacionesTAD tad = new OperacionesTAD();
     
@@ -48,7 +49,6 @@ public class GamePanel extends JPanel implements Runnable{
     
     public final int MAX_WORLD_COL = 50;
     public final int MAX_WORLD_ROW = 50;
-
     
     
     final int FPS = 60;
@@ -73,13 +73,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     
     public int gameState;
-    public final int TITLE_STATE = 0;
-    public final int PLAY_STATE = 1;
-    public final int PAUSE_STATE = 2;
-    public final int DIALOGUE_STATE = 3;
-    public final int CHARACTER_STATE = 4;
-    public final int OPTIONS_STATE = 5;
-    public final int OVER_STATE = 6;
+
     
     
     
@@ -192,13 +186,7 @@ public class GamePanel extends JPanel implements Runnable{
             }
             
             //Sort
-            Collections.sort(entityList, new Comparator<Entity>() {
-                
-                public int compare(Entity e1, Entity e2) {
-                    int result = Integer.compare(e1.worldX, e2.worldY);
-                    return result;
-                }
-            });
+            quickSort(entityList, 0, entityList.size() - 1);
             
             for (int i = 0; i < entityList.size(); i++) {
                 entityList.get(i).draw(g2);
@@ -272,5 +260,28 @@ public class GamePanel extends JPanel implements Runnable{
             }
         }
         
+    }
+ 
+    public void quickSort(ArrayList<Entity> entityList, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(entityList, low, high);
+            quickSort(entityList, low, pivotIndex - 1);
+            quickSort(entityList, pivotIndex + 1, high);
+        }
+    }
+
+    public int partition(ArrayList<Entity> entityList, int low, int high) {
+        int pivotValue = entityList.get(high).worldX;
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (entityList.get(j).worldX >= pivotValue) {
+                i++;
+                Collections.swap(entityList, i, j);
+            }
+        }
+
+        Collections.swap(entityList, i + 1, high);
+        return i + 1;
     }
 }

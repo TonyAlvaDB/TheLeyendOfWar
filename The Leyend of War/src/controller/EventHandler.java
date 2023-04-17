@@ -6,6 +6,7 @@
 package controller;
 
 import java.awt.Rectangle;
+import model.GamePanelConstants;
 import view.GamePanel;
 
 /**
@@ -15,7 +16,7 @@ import view.GamePanel;
  * Software Engeneer Student - UIA
  *
  */
-public class EventHandler {
+public class EventHandler implements GamePanelConstants{
     GamePanel gamePanel;
     EventRect eventRect[][];
     
