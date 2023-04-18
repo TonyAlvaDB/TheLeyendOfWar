@@ -76,7 +76,7 @@ public class MonsterGreenSlime extends Entity{
             
         }
         int i = new Random().nextInt(100)+1;
-        if(i > 80 & proyectile.alive == false){
+        if(i > 30 & proyectile.alive == false){
             proyectile.set(worldX, worldY, direction, true, this);
             gamePanel.proyectileList.add(proyectile);
             

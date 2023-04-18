@@ -507,6 +507,7 @@ public class Player extends Entity implements GamePanelConstants{
                     gamePanel.ui.addMessage("Mataste al " + gamePanel.monster[i].name + "!");
                     gamePanel.ui.addMessage("Experiencia +" + gamePanel.monster[i].exp + "!");
                     exp += gamePanel.monster[i].exp;
+                    gamePanel.monsterQuantity--;
                     checkLevelUp();
                 }
                 

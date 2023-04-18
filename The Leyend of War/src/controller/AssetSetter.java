@@ -104,6 +104,64 @@ public class AssetSetter {
         gamePanel.monster[6] = new MonsterGreenSlime(gamePanel);
         gamePanel.monster[6].worldX = gamePanel.TILE_SIZE * 2;
         gamePanel.monster[6].worldY = gamePanel.TILE_SIZE * 29;
-    
+        
+        gamePanel.monster[7] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[7].worldX = gamePanel.TILE_SIZE * 2;
+        gamePanel.monster[7].worldY = gamePanel.TILE_SIZE * 30;
+        
+        gamePanel.monster[8] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[8].worldX = gamePanel.TILE_SIZE * 10;
+        gamePanel.monster[8].worldY = gamePanel.TILE_SIZE * 40;
+        
+        gamePanel.monster[9] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[9].worldX = gamePanel.TILE_SIZE * 10;
+        gamePanel.monster[9].worldY = gamePanel.TILE_SIZE * 41;
+        
+        gamePanel.monster[10] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[10].worldX = gamePanel.TILE_SIZE * 9;
+        gamePanel.monster[10].worldY = gamePanel.TILE_SIZE * 41;
+        
+        gamePanel.monster[11] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[11].worldX = gamePanel.TILE_SIZE * 40;
+        gamePanel.monster[11].worldY = gamePanel.TILE_SIZE * 46;
+        
+        gamePanel.monster[12] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[12].worldX = gamePanel.TILE_SIZE * 39;
+        gamePanel.monster[12].worldY = gamePanel.TILE_SIZE * 46;
+        
+        gamePanel.monster[13] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[13].worldX = gamePanel.TILE_SIZE * 25;
+        gamePanel.monster[13].worldY = gamePanel.TILE_SIZE * 4;
+        gamePanel.monster[13].attack = 7;
+        gamePanel.monster[13].speed = 2;
+        gamePanel.monster[13].defense = 2;
+        
+        gamePanel.monster[14] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[14].worldX = gamePanel.TILE_SIZE * 24;
+        gamePanel.monster[14].worldY = gamePanel.TILE_SIZE * 4;
+        gamePanel.monster[14].attack = 7;
+        gamePanel.monster[14].speed = 2;
+        gamePanel.monster[14].defense = 2;
+        
+        gamePanel.monster[15] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[15].worldX = gamePanel.TILE_SIZE * 24;
+        gamePanel.monster[15].worldY = gamePanel.TILE_SIZE * 3;
+        gamePanel.monster[15].attack = 7;
+        gamePanel.monster[15].speed = 2;
+        gamePanel.monster[15].defense = 2;
+        
+        gamePanel.monster[16] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[16].worldX = gamePanel.TILE_SIZE *24;
+        gamePanel.monster[16].worldY = gamePanel.TILE_SIZE * 5;
+        gamePanel.monster[16].attack = 7;
+        gamePanel.monster[16].speed = 2;
+        gamePanel.monster[16].defense = 2;
+        
+        gamePanel.monster[17] = new MonsterGreenSlime(gamePanel);
+        gamePanel.monster[17].worldX = gamePanel.TILE_SIZE *25;
+        gamePanel.monster[17].worldY = gamePanel.TILE_SIZE * 5;
+        gamePanel.monster[17].attack = 7;
+        gamePanel.monster[17].speed = 2;
+        gamePanel.monster[17].defense = 2;
     }
 }

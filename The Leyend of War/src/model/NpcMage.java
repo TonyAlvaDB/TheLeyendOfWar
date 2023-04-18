@@ -121,11 +121,13 @@ public class NpcMage extends Entity{
             case 0:
                 return "No puedo creerlo \n... \nEres War!";
             case 1:
-                return "El miedo se apodera del \ndesierto, como de ti al ver \nun arbol binario.";
+                return "El desastre que dejaste en \naqui no tiene nombre - . -\nMataste a Stigia pero esto\nno se limpiara solo.";
             case 2:
-                return "Ayudanos a salvar el desierto, \nWar.";
+                return "Estos slimes dan asco. \nLimpia tu desastre!.";
             case 3:
-                return "Porfi xd.";
+                return "Solo cuidate de los slimes \ndel norte... \nSon mas fuertes que los otros.";
+            case 4:
+                return "Y si no limpias tendras que \nprogramar un arbol binario xd.";
             default:
                 return null;
         }

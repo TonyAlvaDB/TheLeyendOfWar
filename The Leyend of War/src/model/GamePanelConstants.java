@@ -16,6 +16,7 @@ public interface GamePanelConstants {
     public final int CHARACTER_STATE = 4;
     public final int OPTIONS_STATE = 5;
     public final int OVER_STATE = 6;
+    public final int WIN_STATE = 7;
     
     public final int MAX_WORLD_COL = 50;
     public final int MAX_WORLD_ROW = 50;

@@ -62,9 +62,10 @@ public class GamePanel extends JPanel implements Runnable, GamePanelConstants{
     public Player player = new Player(this, keyH);
     public Entity obj[] = new Entity[20];
     public Entity npc[] = new Entity[10];
-    public Entity monster[] = new Entity[20];
+    public Entity monster[] = new Entity[30];
     ArrayList<Entity> entityList = new ArrayList<>();
     public ArrayList<Entity> proyectileList = new ArrayList<>();
+    public int monsterQuantity = 16;
     
     
     public int gameState;
@@ -147,6 +148,10 @@ public class GamePanel extends JPanel implements Runnable, GamePanelConstants{
         if(gameState == PAUSE_STATE){
             
         }
+        
+        if(monsterQuantity ==0){
+            gameState = WIN_STATE;
+        }
             
     }
     
@@ -194,10 +199,7 @@ public class GamePanel extends JPanel implements Runnable, GamePanelConstants{
             
             g2.dispose();    
         }
-        
-        
-        
-        
+           
         
     }
     public void playMusic(int i){

@@ -59,6 +59,10 @@ public class KeyHandler implements KeyListener, GamePanelConstants{
             gameOverState(code);
         }
         
+        else if (gamePanel.gameState == gamePanel.WIN_STATE){ 
+            gameOverState(code);
+        }
+        
     }
     //Nos controla todo lo que pasa cuando se presiona una tecla en el play state
     public void playState (int code){
