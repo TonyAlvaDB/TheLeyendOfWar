@@ -158,7 +158,9 @@ public class UI implements GamePanelConstants{
             e.printStackTrace();
         }
         g2.drawImage(image,0, 0,gamePanel.SCREEN_WIDTH, gamePanel.SCREEN_HEIGHT + (gamePanel.TILE_SIZE*3), null);
-        
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(32F));
+        g2.drawString("Presione enter para empezar", 180, gamePanel.SCREEN_HEIGHT-100);
     }
 
     private void drawPlayerLife() {

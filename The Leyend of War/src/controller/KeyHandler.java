@@ -149,7 +149,7 @@ public class KeyHandler implements KeyListener, GamePanelConstants{
         if(code==KeyEvent.VK_ENTER){
             gamePanel.gameState = gamePanel.PLAY_STATE;
             gamePanel.stopMusic();
-            gamePanel.playMusic(2);
+            gamePanel.playMusic(1);
         }
     }
     //Nos controla todo lo que pasa cuando se presiona una tecla en el options state
@@ -233,7 +233,7 @@ public class KeyHandler implements KeyListener, GamePanelConstants{
         if(code == KeyEvent.VK_ENTER){
             if(gamePanel.ui.commandNum == 0){
                 gamePanel.gameState = gamePanel.PLAY_STATE;
-                gamePanel.retry();
+                gamePanel.restart();
             }else if(gamePanel.ui.commandNum == 1){
                 gamePanel.gameState = gamePanel.TITLE_STATE;
                 gamePanel.restart();
